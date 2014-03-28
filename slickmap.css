@@ -1,19 +1,67 @@
 /*
-NOTE: This CSS file was created by Matt Everson (astuteo.com) as part of his SlickMap CSS package; All rights to this property are reserved by the original creator.
+NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part of his SlickMap CSS package; All rights to this property are reserved by the original creator.
 */
 
 /* ------------------------------------------------------------
 	Reset Styles (from meyerweb.com)
 ------------------------------------------------------------ */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
+.slickmap div,
+.slickmap span,
+.slickmap applet,
+.slickmap object,
+.slickmap iframe,
+.slickmap h1,
+.slickmap h2,
+.slickmap h3,
+.slickmap h4,
+.slickmap h5,
+.slickmap h6,
+.slickmap p,
+.slickmap blockquote,
+.slickmap pre,
+.slickmap a,
+.slickmap abbr,
+.slickmap acronym,
+.slickmap address,
+.slickmap big,
+.slickmap cite,
+.slickmap code,
+.slickmap del,
+.slickmap dfn,
+.slickmap em,
+.slickmap font,
+.slickmap img,
+.slickmap ins,
+.slickmap kbd,
+.slickmap q,
+.slickmap s,
+.slickmap samp,
+.slickmap small,
+.slickmap strike,
+.slickmap strong,
+.slickmap sub,
+.slickmap sup,
+.slickmap tt,
+.slickmap var,
+.slickmap dl,
+.slickmap dt,
+.slickmap dd,
+.slickmap ol,
+.slickmap ul,
+.slickmap li,
+.slickmap fieldset,
+.slickmap form,
+.slickmap label,
+.slickmap legend,
+.slickmap table,
+.slickmap caption,
+.slickmap tbody,
+.slickmap tfoot,
+.slickmap thead,
+.slickmap tr,
+.slickmap th,
+.slickmap td {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -32,30 +80,30 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	be 16.6%, etc. 
 ------------------------------------------------------------ */
 
-#primaryNav li {
-	width:25%;
+.slickmap #primaryNav li {
+	width:20%;
 }
 
-#primaryNav li ul li {
+.slickmap #primaryNav li ul li {
 	width:100% !important;
 }
 
-#primaryNav.col1 li { width:99.9%; }
-#primaryNav.col2 li { width:50.0%; }
-#primaryNav.col3 li { width:33.3%; }
-#primaryNav.col4 li { width:25.0%; }
-#primaryNav.col5 li { width:20.0%; }
-#primaryNav.col6 li { width:16.6%; }
-#primaryNav.col7 li { width:14.2%; }
-#primaryNav.col8 li { width:12.5%; }
-#primaryNav.col9 li { width:11.1%; }
-#primaryNav.col10 li { width:10.0%; }
+.slickmap #primaryNav.col1 li { width:99.9%; }
+.slickmap #primaryNav.col2 li { width:50.0%; }
+.slickmap #primaryNav.col3 li { width:33.3%; }
+.slickmap #primaryNav.col4 li { width:25.0%; }
+.slickmap #primaryNav.col5 li { width:20.0%; }
+.slickmap #primaryNav.col6 li { width:16.6%; }
+.slickmap #primaryNav.col7 li { width:14.2%; }
+.slickmap #primaryNav.col8 li { width:12.5%; }
+.slickmap #primaryNav.col9 li { width:11.1%; }
+.slickmap #primaryNav.col10 li { width:10.0%; }
 
 /* ------------------------------------------------------------
 	General Styles
 ------------------------------------------------------------ */
 
-body {
+.slickmap {
 	background: white;
 	color: black;
 	padding: 40px;
@@ -63,27 +111,28 @@ body {
 	font-size: 12px;
 	line-height: 1;
 }
-.sitemap {
+.slickmap .sitemap {
 	margin: 0 0 40px 0;
 	float: left;
 	width: 100%;
 }
-h1 {
+.slickmap h1 {
 	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 20px;
 	margin: 0 0 5px 0;
 }
-h2 {
+.slickmap h2 {
 	font-family: Gotham, Helvetica, Arial, sans-serif;
 	font-size: 10px;
 	color: #777777;
 	margin: 0 0 20px 0;
 }
-a {
+.slickmap a {
 	text-decoration: none;
 }
-ol, ul {
+.slickmap ol,
+.slickmap ul {
 	list-style: none;
 }
 
@@ -94,12 +143,12 @@ ol, ul {
 
 /* --------	Top Level --------- */
 
-#primaryNav {
+.slickmap #primaryNav {
 	margin: 0;
 	float: left;
 	width: 100%;
 }
-#primaryNav #home {
+.slickmap #primaryNav #home {
 	display: block;
 	float: none;
 	background: #ffffff url('images/L1-left.png') center bottom no-repeat;
@@ -107,13 +156,13 @@ ol, ul {
 	z-index: 2;
 	padding: 0 0 30px 0;
 }
-#primaryNav li {
+.slickmap #primaryNav li {
 	float: left;
 	background: url('images/L1-center.png') center top no-repeat;
 	padding: 30px 0;
 	margin-top: -30px;
 }
-#primaryNav li a {
+.slickmap #primaryNav li a {
 	margin: 0 20px 0 0;
 	padding: 10px 0;
 	display: block;
@@ -128,15 +177,15 @@ ol, ul {
 	-webkit-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; 
 	-moz-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; /* FF 3.5+ */	
 }
-#primaryNav li a:hover {
+.slickmap #primaryNav li a:hover {
 	background-color: #e2f4fd;
 	border-color: #97bdcf;
 }
-#primaryNav li:last-child {
+.slickmap #primaryNav li:last-child {
 	background: url('images/L1-right.png') center top no-repeat;
 }
-a:link:before,
-a:visited:before {
+.slickmap a:link:before,
+.slickmap a:visited:before {
 	content: " "attr(href)" ";
 	display: block;
 	text-transform: uppercase;
@@ -144,53 +193,53 @@ a:visited:before {
 	margin-bottom: 5px;
 	word-wrap: break-word;
 }
-#primaryNav li a:link:before,
-#primaryNav li a:visited:before {
+.slickmap #primaryNav li a:link:before,
+.slickmap #primaryNav li a:visited:before {
 	color: #78a9c0;
 }
 
 /* --------	Second Level --------- */
 
-#primaryNav li li {
+.slickmap #primaryNav li li {
 	width: 100%;
 	clear: left;
 	margin-top: 0;
 	padding: 10px 0 0 0;
 	background: url('images/vertical-line.png') center bottom repeat-y;
 }
-#primaryNav li li a {
+.slickmap #primaryNav li li a {
 	background-color: #cee3ac;
 	border-color: #b8da83;
 }
-#primaryNav li li a:hover {
+.slickmap #primaryNav li li a:hover {
 	border-color: #94b75f;
 	background-color: #e7f1d7;
 }
-#primaryNav li li:first-child {
+.slickmap #primaryNav li li:first-child {
 	padding-top: 30px;
 }
-#primaryNav li li:last-child {
+.slickmap #primaryNav li li:last-child {
 	background: url('images/vertical-line.png') center bottom repeat-y;
 }
-#primaryNav li li a:link:before,
-#primaryNav li li a:visited:before {
+.slickmap #primaryNav li li a:link:before,
+.slickmap #primaryNav li li a:visited:before {
 	color: #8faf5c;
 }
 
 /* --------	Third Level --------- */
 
-#primaryNav li li ul {
+.slickmap #primaryNav li li ul {
 	margin: 10px 0 0 0;
 	width: 100%;
 	float: right;
 	padding: 9px 0 10px 0;
 	background: #ffffff url('images/L3-ul-top.png') center top no-repeat;
 }
-#primaryNav li li li {
+.slickmap #primaryNav li li li {
 	background: url('images/L3-center.png') left center no-repeat;
 	padding: 5px 0;
 }
-#primaryNav li li li a {
+.slickmap #primaryNav li li li a {
 	background-color: #fff7aa;
 	border-color: #e3ca4b;
 	font-size: 12px;
@@ -198,19 +247,19 @@ a:visited:before {
 	width: 80%;
 	float: right;
 }
-#primaryNav li li li a:hover {
+.slickmap #primaryNav li li li a:hover {
 	background-color: #fffce5;
 	border-color: #d1b62c;
 }
-#primaryNav li li li:first-child {
+.slickmap #primaryNav li li li:first-child {
 	padding: 15px 0 5px 0;
 	background: url('images/L3-li-top.png') left center no-repeat;
 }
-#primaryNav li li li:last-child {
+.slickmap #primaryNav li li li:last-child {
 	background: url('images/L3-bottom.png') left center no-repeat;
 }
-#primaryNav li li li a:link:before,
-#primaryNav li li li a:visited:before {
+.slickmap #primaryNav li li li a:link:before,
+.slickmap #primaryNav li li li a:visited:before {
 	color: #ccae14;
 	font-size: 9px;
 }

@@ -271,7 +271,7 @@ function slickmap_css_sitemap_general_padding_callback() {
 		'right' 	=>	'0px',
 		'bottom'	=>	'10px',
 		'left'	 	=>	'0px',
-	)
+	);
 	if ( get_option( 'slickmap_css_sitemap_general_padding' ) ) {
 		$padding = get_option( 'slickmap_css_sitemap_general_padding' );
 	}
@@ -615,15 +615,15 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 		$sitemap_structure = $content . '</ul>';
 	}
 	//concatenate all content for output
-	$sitemap = '<ul id="primaryNav">';
+	$sitemap = '<div class="slickmap"><ul id="primaryNav">';
 	//style tag here
 	$sitemap .= $style;
 	// modified ul content here
-	$sitemap .= $sitemap_structure;
+	$sitemap .= $sitemap_structure . '</div>';
 	//final output of sitemap
     return $sitemap;
 }
-add_shortcode( 'slickmap', 'slickmap_css_sitemap_shortcode_shortcode' );
+add_shortcode( 'slickmap', 'slickmap_css_sitemap_shortcode' );
 
 //include slickmap css; sets defaults and display style
 function include_slickmap_css_sitemap_style() {
@@ -634,8 +634,8 @@ add_action( 'wp_enqueue_scripts', 'include_slickmap_css_sitemap_style' );
 
 function include_colorpicker_script_for_slickmap_options() {
 	wp_enqueue_script( 'wp-color-picker' );
-	// load the minified version of custom script
-// 	wp_enqueue_script( 'cp_demo-custom', plugins_url( 'js/cp-demo-script.min.js', __FILE__ ), array( 'jquery', 'wp-color-picker' ), '1.1', true );
+	// load the custom script
+	wp_enqueue_script( 'slickmap_css_sitemap_js', plugins_url( 'slickmap_css_sitemap.js', __FILE__ ), array( 'jquery', 'wp-color-picker' ), '1.0', true );
 	wp_enqueue_style( 'wp-color-picker' );
 }
 add_action( 'admin_enqueue_scripts', 'include_colorpicker_script_for_slickmap_options' );
