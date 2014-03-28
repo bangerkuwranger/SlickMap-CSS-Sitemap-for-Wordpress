@@ -54,19 +54,20 @@ function slickmap_css_sitemap_menu_content($active_tab = '') {
         <form method="post" action="options.php">
         
 			
-            <?php 
+            <?php
              if( $active_tab == 'colors' ) {
+             	settings_fields( 'slickmap_css_sitemap_menu_colors' );
 				do_settings_sections( 'slickmap_css_sitemap_menu_colors' ); 
             }
-             if( $active_tab == 'text' ) {
+             elseif( $active_tab == 'text' ) {
+             	settings_fields( 'slickmap_css_sitemap_menu_text' );
 				do_settings_sections( 'slickmap_css_sitemap_menu_text' ); 
             }
             else {
+            	settings_fields( 'slickmap_css_sitemap_menu_general' );
 				do_settings_sections( 'slickmap_css_sitemap_menu_general' ); 
             }
-            ?>
- 
-            <?php // settings_fields( 'slickmap_css_sitemap_colors_home' ); 
+            // settings_fields( 'slickmap_css_sitemap_colors_home' ); 
 //             <?php do_settings_sections( 'slickmap_css_sitemap_colors_home' ); 
 //             <?php settings_fields( 'slickmap_css_sitemap_colors_level1' ); 
 //             <?php do_settings_sections( 'slickmap_css_sitemap_colors_level1' );
@@ -83,12 +84,10 @@ function slickmap_css_sitemap_menu_content($active_tab = '') {
 //             <?php do_settings_sections( 'slickmap_css_sitemap_text_level2' ); 
 //             <?php settings_fields( 'slickmap_css_sitemap_text_level3' ); 
 //             <?php do_settings_sections( 'slickmap_css_sitemap_text_level3' ); 
-            ?>
-         
-            <?php submit_button(); ?>
+           
+        	submit_button(); ?>
              
         </form>
-         
     </div><!-- /.wrap -->
 <?php
 }
@@ -158,50 +157,50 @@ function slickmap_css_sitemap_settings_api_init() {
 
 	//register settings for savin'
 		//general
-	register_setting( 'slickmap_css_sitemap_general', 'slickmap_css_sitemap_general_gradient' );
-	register_setting( 'slickmap_css_sitemap_general', 'slickmap_css_sitemap_general_font_family' );
-	register_setting( 'slickmap_css_sitemap_general', 'slickmap_css_sitemap_general_radius' );
-	register_setting( 'slickmap_css_sitemap_general', 'slickmap_css_sitemap_general_padding' );
+	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_gradient' );
+	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_font_family' );
+	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_radius' );
+	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_padding' );
 		//home-colors
-	register_setting( 'slickmap_css_sitemap_colors_home', 'slickmap_css_sitemap_home_bgcolor' );
-	register_setting( 'slickmap_css_sitemap_colors_home', 'slickmap_css_sitemap_home_bgcolor_hover' );
-	register_setting( 'slickmap_css_sitemap_colors_home', 'slickmap_css_sitemap_home_bordercolor' );
-	register_setting( 'slickmap_css_sitemap_colors_home', 'slickmap_css_sitemap_home_bordercolor_hover' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_home_bgcolor' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_home_bgcolor_hover' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_home_bordercolor' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_home_bordercolor_hover' );
 		//L1-colors
-	register_setting( 'slickmap_css_sitemap_colors_level1', 'slickmap_css_sitemap_level1_bgcolor' );
-	register_setting( 'slickmap_css_sitemap_colors_level1', 'slickmap_css_sitemap_level1_bgcolor_hover' );
-	register_setting( 'slickmap_css_sitemap_colors_level1', 'slickmap_css_sitemap_level1_bordercolor' );
-	register_setting( 'slickmap_css_sitemap_colors_level1', 'slickmap_css_sitemap_level1_bordercolor_hover' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level1_bgcolor' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level1_bgcolor_hover' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level1_bordercolor' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level1_bordercolor_hover' );
 		//L2-colors
-	register_setting( 'slickmap_css_sitemap_colors_level2', 'slickmap_css_sitemap_level2_bgcolor' );
-	register_setting( 'slickmap_css_sitemap_colors_level2', 'slickmap_css_sitemap_level2_bgcolor_hover' );
-	register_setting( 'slickmap_css_sitemap_colors_level2', 'slickmap_css_sitemap_level2_bordercolor' );
-	register_setting( 'slickmap_css_sitemap_colors_level2', 'slickmap_css_sitemap_level2_bordercolor_hover' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level2_bgcolor' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level2_bgcolor_hover' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level2_bordercolor' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level2_bordercolor_hover' );
 		//L3-colors
-	register_setting( 'slickmap_css_sitemap_colors_level3', 'slickmap_css_sitemap_level3_bgcolor' );
-	register_setting( 'slickmap_css_sitemap_colors_level3', 'slickmap_css_sitemap_level3_bgcolor_hover' );
-	register_setting( 'slickmap_css_sitemap_colors_level3', 'slickmap_css_sitemap_level3_bordercolor' );
-	register_setting( 'slickmap_css_sitemap_colors_level3', 'slickmap_css_sitemap_level3_bordercolor_hover' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level3_bgcolor' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level3_bgcolor_hover' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level3_bordercolor' );
+	register_setting( 'slickmap_css_sitemap_menu_colors', 'slickmap_css_sitemap_level3_bordercolor_hover' );
 		//home-text
-	register_setting( 'slickmap_css_sitemap_text_home', 'slickmap_css_sitemap_home_title_text_color' );
-	register_setting( 'slickmap_css_sitemap_text_home', 'slickmap_css_sitemap_home_title_text_size' );
-	register_setting( 'slickmap_css_sitemap_text_home', 'slickmap_css_sitemap_home_path_text_color' );
-	register_setting( 'slickmap_css_sitemap_text_home', 'slickmap_css_sitemap_home_path_text_size' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_home_title_text_color' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_home_title_text_size' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_home_path_text_color' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_home_path_text_size' );
 		//L1-text
-	register_setting( 'slickmap_css_sitemap_text_level1', 'slickmap_css_sitemap_level1_title_text_color' );
-	register_setting( 'slickmap_css_sitemap_text_level1', 'slickmap_css_sitemap_level1_title_text_size' );
-	register_setting( 'slickmap_css_sitemap_text_level1', 'slickmap_css_sitemap_level1_path_text_color' );
-	register_setting( 'slickmap_css_sitemap_text_level1', 'slickmap_css_sitemap_level1_path_text_size' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level1_title_text_color' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level1_title_text_size' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level1_path_text_color' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level1_path_text_size' );
 		//L2-text
-	register_setting( 'slickmap_css_sitemap_text_level2', 'slickmap_css_sitemap_level2_title_text_color' );
-	register_setting( 'slickmap_css_sitemap_text_level2', 'slickmap_css_sitemap_level2_title_text_size' );
-	register_setting( 'slickmap_css_sitemap_text_level2', 'slickmap_css_sitemap_level2_path_text_color' );
-	register_setting( 'slickmap_css_sitemap_text_level2', 'slickmap_css_sitemap_level2_path_text_size' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level2_title_text_color' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level2_title_text_size' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level2_path_text_color' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level2_path_text_size' );
 		//L3-text
-	register_setting( 'slickmap_css_sitemap_text_level3', 'slickmap_css_sitemap_level3_title_text_color' );
-	register_setting( 'slickmap_css_sitemap_text_level3', 'slickmap_css_sitemap_level3_title_text_size' );
-	register_setting( 'slickmap_css_sitemap_text_level3', 'slickmap_css_sitemap_level3_path_text_color' );
-	register_setting( 'slickmap_css_sitemap_text_level3', 'slickmap_css_sitemap_level3_path_text_size' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level3_title_text_color' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level3_title_text_size' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level3_path_text_color' );
+	register_setting( 'slickmap_css_sitemap_menu_text', 'slickmap_css_sitemap_level3_path_text_size' );
 
 }
 
@@ -276,9 +275,9 @@ function slickmap_css_sitemap_general_padding_callback() {
 		$padding = get_option( 'slickmap_css_sitemap_general_padding' );
 	}
 	echo "<p>Top: <input size='10' name='slickmap_css_sitemap_general_padding_top' id='slickmap_css_sitemap_general_padding_top' type='text' value='" . $padding['top'] . "' /></p>";
-	echo "<p>Top: <input size='10' name='slickmap_css_sitemap_general_padding_bottom' id='slickmap_css_sitemap_general_padding_bottom' type='text' value='" . $padding['bottom'] . "' /></p>";
-	echo "<p>Top: <input size='10' name='slickmap_css_sitemap_general_padding_right' id='slickmap_css_sitemap_general_padding_right' type='text' value='" . $padding['right'] . "' /></p>";
-	echo "<p>Top: <input size='10' name='slickmap_css_sitemap_general_padding_left' id='slickmap_css_sitemap_general_padding_left' type='text' value='" . $padding['left'] . "' /></p>";
+	echo "<p>Bottom: <input size='10' name='slickmap_css_sitemap_general_padding_bottom' id='slickmap_css_sitemap_general_padding_bottom' type='text' value='" . $padding['bottom'] . "' /></p>";
+	echo "<p>Right: <input size='10' name='slickmap_css_sitemap_general_padding_right' id='slickmap_css_sitemap_general_padding_right' type='text' value='" . $padding['right'] . "' /></p>";
+	echo "<p>Left: <input size='10' name='slickmap_css_sitemap_general_padding_left' id='slickmap_css_sitemap_general_padding_left' type='text' value='" . $padding['left'] . "' /></p>";
 }
 
 function slickmap_css_sitemap_home_bgcolor_callback() {
@@ -608,16 +607,23 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 		//return }
 	$style .= '</style>';
 	//remove open ul tag from sitemap structure
-	if (substr($content, 0, 4) == '<ul>') {
-		$sitemap_structure = substr($content, 4);
-	}
-	else {
-		$sitemap_structure = $content . '</ul>';
-	}
+// 	if (substr($content, 0, 5) == '<ul>') {
+// 		$sitemap_structure = substr($content, 6);
+// 	}
+// 	else {
+// 		$sitemap_structure = '<!-- <div>'.substr($content, 0, 5).'</div> -->' . $content . '</ul>';
+// 	}
+	$sitemap_structure = '<script type="text/javascript">
+	jQuery(document).ready(function () {
+		jQuery(".slickmap>ul").attr("id", "primaryNav");
+		jQuery("#primaryNav>li:first-child").attr("id", "home");
+	});
+	</script>' . $content;
 	//concatenate all content for output
-	$sitemap = '<div class="slickmap"><ul id="primaryNav">';
 	//style tag here
-	$sitemap .= $style;
+	$sitemap = $style;
+	//open containers
+	$sitemap .= '<div class="slickmap sitemap">';
 	// modified ul content here
 	$sitemap .= $sitemap_structure . '</div>';
 	//final output of sitemap
