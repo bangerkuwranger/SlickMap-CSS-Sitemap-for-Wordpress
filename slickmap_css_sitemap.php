@@ -734,17 +734,24 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 		$style_rules['target5']['font-family'] =  get_option( 'slickmap_css_sitemap_general_font_family' ) . ' !important';
 	}
 	//size columns based on number of columns; 7 by default in this implementation
-	if( $atts['columns'] != 7 ) {
-		$style_rules['target6']['width'] =  intval( 100 / intval( $atts['columns'] ) ). ' !important';
-	}
+	// if( $atts['columns'] != 7 ) {
+// 		$style_rules['target6']['width'] =  intval( 100 / intval( $atts['columns'] ) ). ' !important';
+// 	}
 	
 	//create style rules to override included stylesheet
 	$style = '<style>';
 	//$style .= foreach css selector in array (#primaryNav li a; #primaryNav li a:hover; #primaryNav li a:link:before, #primaryNav li a:visited:before; #primaryNav li li a; #primaryNav li li a:hover; #primaryNav li li a:link:before, #primaryNav li li a:visited:before; #primaryNav li li li a; #primaryNav li li li a:hover; #primaryNav li li li a:link:before, #primaryNav li li li a:visited:before; #primaryNav #home a; #primaryNav #home a:hover; #primaryNav #home a:link:before, #primaryNav #home a:visited:before)
+	foreach( $style_rules as $key => $value ) {
 		//return selector {
+		$style .= $value['selector'] . ' { ';
 		//foreach style rule
+			foreach( $value as $k => $v ) {
 			//return style rule pair from array
+				$style .= $k . ': ' . $v . '; ';
+			}
 		//return }
+		$style .= ' } ';
+	}
 	$style .= '</style>';
 	//remove open ul tag from sitemap structure
 // 	if (substr($content, 0, 5) == '<ul>') {
@@ -759,8 +766,6 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 		jQuery("#primaryNav>li:first-child").attr("id", "home");
 	});
 	</script>' . $content;
-	
-	print_r( $style_rules );
 	
 	//concatenate all content for output
 	//style tag here
