@@ -1,19 +1,67 @@
 /*
-NOTE: This CSS file was created by Matt Everson (astuteo.com) as part of his SlickMap CSS package; All rights to this property are reserved by the original creator.
+NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part of his SlickMap CSS package; All rights to this property are reserved by the original creator.
 */
 
 /* ------------------------------------------------------------
 	Reset Styles (from meyerweb.com)
 ------------------------------------------------------------ */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
+.slickmap div,
+.slickmap span,
+.slickmap applet,
+.slickmap object,
+.slickmap iframe,
+.slickmap h1,
+.slickmap h2,
+.slickmap h3,
+.slickmap h4,
+.slickmap h5,
+.slickmap h6,
+.slickmap p,
+.slickmap blockquote,
+.slickmap pre,
+.slickmap a,
+.slickmap abbr,
+.slickmap acronym,
+.slickmap address,
+.slickmap big,
+.slickmap cite,
+.slickmap code,
+.slickmap del,
+.slickmap dfn,
+.slickmap em,
+.slickmap font,
+.slickmap img,
+.slickmap ins,
+.slickmap kbd,
+.slickmap q,
+.slickmap s,
+.slickmap samp,
+.slickmap small,
+.slickmap strike,
+.slickmap strong,
+.slickmap sub,
+.slickmap sup,
+.slickmap tt,
+.slickmap var,
+.slickmap dl,
+.slickmap dt,
+.slickmap dd,
+.slickmap ol,
+.slickmap ul,
+.slickmap li,
+.slickmap fieldset,
+.slickmap form,
+.slickmap label,
+.slickmap legend,
+.slickmap table,
+.slickmap caption,
+.slickmap tbody,
+.slickmap tfoot,
+.slickmap thead,
+.slickmap tr,
+.slickmap th,
+.slickmap td {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -33,7 +81,12 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 ------------------------------------------------------------ */
 
 #primaryNav li {
-	width:25%;
+	width:14%;
+	margin: 0 !important;
+}
+
+#home a {
+width: 200%;
 }
 
 #primaryNav li ul li {
@@ -55,36 +108,40 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	General Styles
 ------------------------------------------------------------ */
 
-body {
+.slickmap {
 	background: white;
 	color: black;
-	padding: 40px;
+	padding: 48px;
 	font-family: Gotham, Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	line-height: 1;
 }
-.sitemap {
-	margin: 0 0 40px 0;
-	float: left;
+.slickmap.sitemap {
+	margin: 1em auto;
+	float: none;
 	width: 100%;
+	max-width: 1280px;
 }
-h1 {
+.slickmap h1 {
 	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 20px;
 	margin: 0 0 5px 0;
 }
-h2 {
-	font-family: "Lucida Grande", Verdana, sans-serif;
+.slickmap h2 {
+	font-family: Gotham, Helvetica, Arial, sans-serif;
 	font-size: 10px;
 	color: #777777;
 	margin: 0 0 20px 0;
 }
-a {
+.slickmap a {
 	text-decoration: none;
 }
-ol, ul {
-	list-style: none;
+.slickmap ol,
+.slickmap ul,
+.slickmap li,
+.slickmap li a {
+	list-style: none !important;
 }
 
 
@@ -106,6 +163,7 @@ ol, ul {
 	position: relative;
 	z-index: 2;
 	padding: 0 0 30px 0;
+	margin-bottom: -30px !important;
 }
 #primaryNav li {
 	float: left;
@@ -127,6 +185,7 @@ ol, ul {
 	-webkit-border-radius: 5px;
 	-webkit-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; 
 	-moz-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; /* FF 3.5+ */	
+	text-transform: uppercase;
 }
 #primaryNav li a:hover {
 	background-color: #e2f4fd;
@@ -135,11 +194,11 @@ ol, ul {
 #primaryNav li:last-child {
 	background: url('images/L1-right.png') center top no-repeat;
 }
-a:link:before,
-a:visited:before {
+.slickmap a:link:before,
+.slickmap a:visited:before {
 	content: " "attr(href)" ";
 	display: block;
-	text-transform: uppercase;
+	text-transform: lowercase;
 	font-size: 10px;
 	margin-bottom: 5px;
 	word-wrap: break-word;
