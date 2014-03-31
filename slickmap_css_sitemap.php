@@ -30,6 +30,12 @@ function slickmap_css_sitemap_menu_content() {
 
 }
 
+	add_settings_section( 'slickmap_css_sitemap_home_settings', 'Settings for Home level', 'slickmap_css_sitemap_home_settings_content', 'slickmap_css_sitemap_menu_content' );
+	
+function slickmap_css_sitemap_home_settings_content() {
+
+}
+
 // add shortcode slickmap
 //e.g. [slickmap]<ul><li>level one</li></ul>[/slickmap]
 function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
@@ -101,11 +107,11 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 		//return }
 	$style .= '</style>';
 	//remove open ul tag from sitemap structure
-	if (substr($content, 0, 4) == '<ul>') {
-		$sitemap_structure = substr($content, 4);
+	if ( substr( do_shortcode( $content ), 0, 4 ) == '<ul>' ) {
+		$sitemap_structure = substr( do_shortcode( $content ), 4 );
 	}
 	else {
-		$sitemap_structure = $content . '</ul>';
+		$sitemap_structure = do_shortcode( $content ) . '</ul>';
 	}
 	//concatenate all content for output
 	$sitemap = '<ul id="primaryNav">';
