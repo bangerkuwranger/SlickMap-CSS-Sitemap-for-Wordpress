@@ -3,7 +3,7 @@
  * Plugin Name: SlickMap CSS Sitemap
  * Plugin URI: https://github.com/bangerkuwranger
  * Description: Wordpress plugin to create a custom HTML/CSS sitemap. Set your colors and fonts, then wrap any set of ULs in a shortcode to make an interactive sitemap. Uses Matt Everson's SlickMap CSS (astuteo.com); give him money if you dig this. 
- * Version: 1.0
+ * Version: 1.2
  * Author: Chad A. Carino
  * Author URI: http://www.chadacarino.com
  * License: MIT

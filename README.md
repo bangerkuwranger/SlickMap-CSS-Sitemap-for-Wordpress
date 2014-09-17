@@ -12,9 +12,9 @@ Tags: custom site map, html, interactive, CSS, no javascript
 
 Requires at least: 3.1
 
-Tested up to: 3.8.1
+Tested up to: 4.0
 
-Stable tag: 1.0
+Stable tag: 1.2
 
 License: MIT
 
@@ -37,6 +37,10 @@ So, you want to make a pretty, interactive sitemap without JS, crazy formatting,
 
 
 == Changelog ==
+
+* 1.2 - 4.0 Compatibility and tweaks to default css
+
+* 1.1 - Compatibility with 3.9
 
 
 == Upgrade Notice ==

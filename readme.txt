@@ -3,8 +3,8 @@ Contributors: bangerkuwranger
 Donate link: http://www.chadacarino.com/burnallmoney.html
 Tags: custom post type, custom fields, testimonials, quotes
 Requires at least: 3.1
-Tested up to: 3.9
-Stable tag: 1.1
+Tested up to: 4.0
+Stable tag: 1.2
 License: MIT
 License URI: http://www.chadacarino.com/license-mit.html
 
@@ -29,6 +29,8 @@ So, you want to make a pretty, interactive sitemap without JS, crazy formatting,
 
 
 == Changelog ==
+
+1.2 - 4.0 Compatibility and tweaks to default css
 
 1.1 - Compatibility with 3.9
 
