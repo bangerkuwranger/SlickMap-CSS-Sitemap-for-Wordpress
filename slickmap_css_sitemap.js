@@ -1,3 +1,3 @@
-jQuery(document).ready(function () {
-	 jQuery('.iris-color-picker-field').wpColorPicker();
+jQuery(document).ready(function ($) {
+	 $('.iris-color-picker-field').wpColorPicker();
 });
