@@ -3,14 +3,14 @@
  * Plugin Name: SlickMap CSS Sitemap
  * Plugin URI: https://github.com/bangerkuwranger
  * Description: Wordpress plugin to create a custom HTML/CSS sitemap. Set your colors and fonts, then wrap any set of ULs in a shortcode to make an interactive sitemap. Uses Matt Everson's SlickMap CSS (astuteo.com); give him money if you dig this. 
- * Version: 1.2
+ * Version: 1.2.1
  * Author: Chad A. Carino
  * Author URI: http://www.chadacarino.com
  * License: MIT
  */
 /*
 The MIT License (MIT)
-Copyright (c) 2014 Chad A. Carino
+Copyright (c) 2015 Chad A. Carino
  
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
@@ -74,6 +74,8 @@ function slickmap_css_sitemap_menu_content($active_tab = '') {
     </div><!-- /.wrap -->
 <?php
 }
+
+/*	New Year's Resolution: create a class for each level's settings and just instantiate those here. Ugh. */
 
 //generate settings menu in admin
 add_action( 'admin_init', 'slickmap_css_sitemap_settings_api_init' );
@@ -733,11 +735,6 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 	if( get_option( 'slickmap_css_sitemap_general_font_family' ) != 'Gotham, Helvetica, Arial, sans-serif' ) {
 		$style_rules['target5']['font-family'] =  get_option( 'slickmap_css_sitemap_general_font_family' ) . ' !important';
 	}
-	//size columns based on number of columns; 7 by default in this implementation
-	// if( $atts['columns'] != 7 ) {
-// 		$style_rules['target6']['width'] =  intval( 100 / intval( $atts['columns'] ) ). ' !important';
-// 	}
-	
 	//create style rules to override included stylesheet
 	$style = '<style>';
 	//$style .= foreach css selector in array (#primaryNav li a; #primaryNav li a:hover; #primaryNav li a:link:before, #primaryNav li a:visited:before; #primaryNav li li a; #primaryNav li li a:hover; #primaryNav li li a:link:before, #primaryNav li li a:visited:before; #primaryNav li li li a; #primaryNav li li li a:hover; #primaryNav li li li a:link:before, #primaryNav li li li a:visited:before; #primaryNav #home a; #primaryNav #home a:hover; #primaryNav #home a:link:before, #primaryNav #home a:visited:before)
@@ -753,13 +750,6 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 		$style .= ' } ';
 	}
 	$style .= '</style>';
-	//remove open ul tag from sitemap structure
-// 	if (substr($content, 0, 5) == '<ul>') {
-// 		$sitemap_structure = substr($content, 6);
-// 	}
-// 	else {
-// 		$sitemap_structure = '<!-- <div>'.substr($content, 0, 5).'</div> -->' . $content . '</ul>';
-// 	}
 	$sitemap_structure = '<script type="text/javascript">
 	jQuery(document).ready(function () {
 		jQuery(".slickmap>ul").attr("id", "primaryNav");
