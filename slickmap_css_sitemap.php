@@ -20,17 +20,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 //create settings menu item for sitemap styles
+add_action('admin_menu', 'slickmap_css_sitemap_menu');
 function slickmap_css_sitemap_menu() {
+
 	add_menu_page( 'SlickMap CSS Sitemap Options', 'SlickMap Options', 'manage_options', 'slickmap_css_sitemap_menu', 'slickmap_css_sitemap_menu_content', 'dashicons-networking', '88.898');
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'SlickMap CSS General Settings', 'General', 'manage-options', 'slickmap_css_sitemap_menu_general', create_function( null, 'slickmap_css_sitemap_menu_content( "general" );' ) ); 
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'SlickMap CSS Colors', 'Colors', 'manage-options', 'slickmap_css_sitemap_menu_colors', create_function( null, 'slickmap_css_sitemap_menu_content( "colors" );' ) ); 
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'SlickMap CSS Text Options', 'Text', 'manage-options', 'slickmap_css_sitemap_menu_text', create_function( null, 'slickmap_css_sitemap_menu_content( "colors" );' ) );
 
-}
+}	//end slickmap_css_sitemap_menu()
 
-add_action('admin_menu', 'slickmap_css_sitemap_menu');
 
-function slickmap_css_sitemap_menu_content($active_tab = '') {
+
+
+function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
+
 ?>
     <!-- Create a header in the default WordPress 'wrap' container -->
     <div class="wrap">
@@ -73,7 +77,8 @@ function slickmap_css_sitemap_menu_content($active_tab = '') {
         </form>
     </div><!-- /.wrap -->
 <?php
-}
+
+}	//end slickmap_css_sitemap_menu_content( $active_tab = '' )
 
 /*	New Year's Resolution: create a class for each level's settings and just instantiate those here. Ugh. */
 
@@ -223,8 +228,10 @@ function slickmap_css_sitemap_general_gradient_callback() {
 	$gradient = get_option( 'slickmap_css_sitemap_general_gradient' );
 	echo '<p>';
 	if( $gradient ) {
-		echo '<input type="radio" name="slickmap_css_gradient" value="show"' . checked( $gradient, 'show' ) . '>Frosty<br/>
-		<input type="radio" name="slickmap_css_gradient" value="hide"' . checked( $gradient, 'hide' ) . '>Flat';
+	?>
+		<input type="radio" name="slickmap_css_gradient" value="show" <?php checked( $gradient, 'show' ) ?> > Frosty<br/>
+		<input type="radio" name="slickmap_css_gradient" value="hide" <?php checked( $gradient, 'hide' ) ?> > Flat
+	<?php
 	}
 	else {
 		echo '<input type="radio" name="slickmap_css_gradient" value="show" checked="checked">Frosty<br/>
