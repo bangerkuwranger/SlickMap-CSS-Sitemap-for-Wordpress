@@ -170,7 +170,7 @@ class slickmap_level {
 	
 	private function _color_settings() {
 		
-		add_settings_section( 'slickmap_css_sitemap_colors_' . $this->level_id, 'Level - ' . $this->level_title, 'slickmap_colors_section_callback', 'slickmap_css_sitemap_menu_colors');
+		add_settings_section( 'slickmap_css_sitemap_colors_' . $this->level_id, 'Level - ' . $this->level_title, 'slickmap_css_sitemap_colors_section_callback', 'slickmap_css_sitemap_menu_colors');
 		$color_settings = array (
 
 			'bgcolor'				=> 'Background Color',
@@ -199,7 +199,7 @@ class slickmap_level {
 	
 	private function _text_settings() {
 	
-		add_settings_section( 'slickmap_css_sitemap_text_' . $this->level_id, 'Level - ' . $this->level_title, 'slickmap_text_section_callback', 'slickmap_css_sitemap_menu_text');
+		add_settings_section( 'slickmap_css_sitemap_text_' . $this->level_id, 'Level - ' . $this->level_title, 'slickmap_css_sitemap_text_section_callback', 'slickmap_css_sitemap_menu_text');
 		$text_settings = array (
 
 			'title_text_color'	=> 'Title Color',

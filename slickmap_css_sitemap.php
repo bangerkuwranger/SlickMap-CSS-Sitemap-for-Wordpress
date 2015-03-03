@@ -303,6 +303,6 @@ add_action( 'wp_enqueue_scripts', 'include_slickmap_css_sitemap_files' );
 function register_slickmap_css_sitemap_files() {
 
 	wp_register_style( 'slickmap_css', SlickMap_PLUGIN_URL . '/css/slickmap.css', array(), '1.3' );
-	wp_register_script( 'slickmap_css_front_js', SlickMap_PLUGIN_URL . '/js/slickmap_css_sitemap_setclass.js', array( 'jquery' ), '1.3', true )
+	wp_register_script( 'slickmap_css_front_js', SlickMap_PLUGIN_URL . '/js/slickmap_css_sitemap_setclass.js', array( 'jquery' ), '1.3', true );
 
 }	//end include_slickmap_css_sitemap_files()
