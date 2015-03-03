@@ -1,7 +1,7 @@
 SlickMap CSS Sitemap
 ====================
 
-Wordpress plugin to create a custom HTML/CSS sitemap. Set your colors and fonts, then wrap any set of ULs in a shortcode to make an interactive sitemap. Uses Matt Everson's SlickMap CSS (astuteo.com); give him money if you dig this. 
+Wordpress plugin to create a custom HTML/CSS sitemap. Set your colors and fonts, then wrap any set of ULs in a shortcode to make an interactive sitemap. Uses Matt Everson's SlickMap CSS ([astuteo.com](http://www.astuteo.com)); give him money if you dig this. 
 
 
 Contributors: bangerkuwranger
@@ -39,7 +39,7 @@ So, you want to make a pretty, interactive sitemap without JS, crazy formatting,
 	- You can get a pretty good idea of what a slickmap based sitemap will look like by checking out Matt’s demo here: https://www.astuteo.com/slickmap/demo/ Of course, since you can change the colors and fonts using this plugin’s settings, it may look very different by the time you’re done with it.
  
 - No, what does the *code* look like?
-	- Well, you don’t have to do anything fancy in the HTML; this plugin was designed to build sitemaps quickly using WordPress’s visual editor. The ‘Bulleted List’ button creates unordered lists (`<ul></ul>`) for you, and you can set which level you want each page in the sitemap to appear on by using the ‘Increase Indent’ and ‘Decrease Indent’ buttons. Basically, you are making an outline view of your site that the plugin turns into a nice visual tree. BUT, if you want a real example of what the HTML looks like, because you code all of your WordPress pages on a typewriter and scan it in as raw HTMl or something, here’s what the HTML would look like to generate Matt’s demo page linked above: 
+	- Well, you don’t have to do anything fancy in the HTML; this plugin was designed to build sitemaps quickly using WordPress’s visual editor. The ‘Bulleted List’ button creates unordered lists (`<ul></ul>`) for you, and you can set which level you want each page in the sitemap to appear on by using the ‘Increase Indent’ and ‘Decrease Indent’ buttons. Basically, you are making an outline view of your site that the plugin turns into a nice visual tree. BUT, if you want a real example of what the HTML looks like, because you code all of your WordPress pages on a typewriter and scan it in as raw HTML or something, here’s what the HTML would look like to generate Matt’s demo page linked above: 
 
 `<ul>`
 
