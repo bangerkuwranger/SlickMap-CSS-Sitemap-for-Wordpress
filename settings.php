@@ -246,17 +246,60 @@ function slickmap_css_sitemap_menu() {
 
 }	//end slickmap_css_sitemap_menu()
 
-function include_frontend_css_admin() {
+
+
+//notice for settings saved
+function slickmap_css_sitemap_saved_notice() {
+
+	echo '
+    <div class="updated">
+        <p>Slickmap CSS Settings have been saved.</p>
+    </div>
+    ';
+
+}	//end slickmap_css_sitemap_saved_notice()
+
+
+
+//function to generate style string and save to transient
+function slickmap_css_sitemap_save_style_transient() {
+
+	$styles = slickmap_css_sitemap_return_user_styles();
+	// echo '<h1>save_transient</h1>';
+	if( false === ( $style_transient = get_transient( 'slickmap_css_sitemap_styles' ) ) ) {
+	
+		set_transient( 'slickmap_css_sitemap_styles', $styles, 30 * DAY_IN_SECONDS );
+		// echo '<h2>No transient - New transient saved</h2>';
+		slickmap_css_sitemap_saved_notice();
+	
+	}
+	elseif( $style_transient != $styles ) {
+		
+			delete_transient( 'slickmap_css_sitemap_styles' );
+			set_transient( 'slickmap_css_sitemap_styles', $styles, 30 * DAY_IN_SECONDS );
+			// echo '<h2>Transient out of date - New transient saved</h2>';
+			slickmap_css_sitemap_saved_notice();
+		
+	}	//end if( false !== ( $style_transient = get_transient( 'slickmap_css_sitemap_styles' ) ) )
+// 	else { echo '<h2>Transient is current - No new transient saved</h2>'; }
+
+}	//end slickmap_css_sitemap_save_style_transient()
+
+
+
+//load frontend css file for admin preview
+function slickmap_css_sitemap_include_frontend_css_admin() {
 
 	echo '<link rel="stylesheet" id="slickmap_css-css" href="' . SlickMap_PLUGIN_URL . '/css/slickmap.css?ver=' . SlickMap_VERSION . '" type="text/css" media="all">';
 
-}	//end include_frontend_css_admin()
+}	//end slickmap_css_sitemap_include_frontend_css_admin()
 
 
 
+//content of preview section; not a setting, so not within main menu page callback (but called by it!)
 function slickmap_css_sitemap_menu_preview_callback() {
 	
-	include_frontend_css_admin();
+	slickmap_css_sitemap_include_frontend_css_admin();
 	$styles = slickmap_css_sitemap_get_saved_styles();
 	$content = '
 	<ul id="primaryNav" class="col3" style="background: #fff; padding: 1em;">
@@ -307,6 +350,7 @@ function slickmap_css_sitemap_menu_preview_callback() {
 //callback for settings tabs
 function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
 
+	slickmap_css_sitemap_save_style_transient();
 ?>
     <div class="wrap">
      

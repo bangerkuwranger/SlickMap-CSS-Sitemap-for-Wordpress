@@ -363,8 +363,23 @@ function slickmap_css_sitemap_get_saved_setting( $level, $setting, $default ) {
 
 
 
-//function to return all style settings as inline <style> string
+//checks if transient containing saved styles exists and is current. if so, returns style string from transient. If not, generates string, saves transient, and returns style string.
 function slickmap_css_sitemap_get_saved_styles() {
+
+	if( false === ( $style_transient = get_transient( 'slickmap_css_sitemap_styles' ) ) ) {
+	
+		slickmap_css_sitemap_save_style_transient();
+		$style_transient = get_transient( 'slickmap_css_sitemap_styles' );
+	
+	}	//end if( false === ( $style_transient = get_transient( 'slickmap_css_sitemap_styles' ) ) )
+	return $style_transient;
+
+}	//end slickmap_css_sitemap_get_saved_styles()
+
+
+
+//function to return all style settings as inline <style> string
+function slickmap_css_sitemap_return_user_styles() {
 
 	//assume all styles are default
 	$styles_are_default = true;
@@ -425,7 +440,7 @@ function slickmap_css_sitemap_get_saved_styles() {
 	
 	}	//end if( $styles_are_default )
 
-}	//end slickmap_css_sitemap_get_saved_styles()
+}	//end slickmap_css_sitemap_return_user_styles()
 
 
 
@@ -453,7 +468,7 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 	
 	);
 	//if breakpoint is set in options, send value to JS
-	if( get_option( 'slickmap_css_sitemap_general_breakpoint' ) ) {
+		if( get_option( 'slickmap_css_sitemap_general_breakpoint' ) ) {
 	
 		$settings_array['breakpoint'] = get_option( 'slickmap_css_sitemap_general_breakpoint' );
 	
