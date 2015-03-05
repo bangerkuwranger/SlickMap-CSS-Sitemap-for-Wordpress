@@ -20,33 +20,430 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 
+//default settings array. NOT static; do NOT overwrite values! (php compatibility is still an issue)
+$slickmap_css_sitemap_default_settings = array(
+
+	'general'	=> array(
+	
+		'.slickmap #primaryNav li a'																					=> array(
+		
+			'border-radius'		=> array(
+			
+				'default'	=> '5px',
+				'setting'	=> 'radius',
+		
+			),
+			'padding'			=> array(
+			
+				'default'	=> '10px 0 10px 0',
+				'setting'	=> 'padding',
+		
+			),
+			'font-family'		=> array(
+			
+				'default'	=> 'Gotham, Helvetica, Arial, sans-serif',
+				'setting'	=> 'font_family',
+		
+			),
+		
+		),
+	
+	),
+	'home'		=> array(
+	
+		'.slickmap #primaryNav > #home > a'																				=> array(
+		
+			
+			'background-color'	=> array(
+			
+				'default'	=> '#c3eafb',
+				'setting'	=> 'bgcolor',
+			
+			),
+			'border-color'		=> array(
+			
+				'default'	=> '#b5d9ea',
+				'setting'	=> 'bordercolor',
+			
+			),
+			'color'				=> array(
+			
+				'default'	=> '#000000',
+				'setting'	=> 'title_text_color',
+			
+			),
+			'font-size'			=> array(
+			
+				'default'	=> '14px',
+				'setting'	=> 'title_text_size',
+			
+			),
+		
+		),
+		'.slickmap #primaryNav > #home > a:link::after, .slickmap #primaryNav > #home > a:visited::after'				=> array(
+		
+			'color'				=> array(
+			
+				'default'	=> '#78a9c0',
+				'setting'	=> 'path_text_color',
+			
+			),
+			'font-size'			=> array(
+			
+				'default'	=> '10px',
+				'setting'	=> 'path_text_size',
+			
+			),
+		
+		),
+		'.slickmap #primaryNav > #home > a:hover'																		=> array(
+		
+			'background-color'	=> array(
+			
+				'default'	=> '#e2f4fd',
+				'setting'	=> 'bgcolor_hover',
+			
+			),
+			'border-color'		=> array(
+			
+				'default'	=> '#97bdcf',
+				'setting'	=> 'bordercolor_hover',
+			
+			),
+		
+		),
+	
+	),
+	'level1'	=> array(
+	
+		'.slickmap #primaryNav li a'																					=> array(
+		
+			'background-color'	=> array(
+			
+				'default'	=> '#c3eafb',
+				'setting'	=> 'bgcolor',
+			
+			),
+			'border-color'		=> array(
+			
+				'default'	=> '#b5d9ea',
+				'setting'	=> 'bordercolor',
+			
+			),
+			'color'				=> array(
+			
+				'default'	=> '#000000',
+				'setting'	=> 'title_text_color',
+			
+			),
+			'font-size'			=> array(
+			
+				'default'	=> '14px',
+				'setting'	=> 'title_text_size',
+			
+			),
+		
+		),
+		'.slickmap #primaryNav li a:link::after, .slickmap #primaryNav li a:visited::after'								=> array(
+		
+			'color'				=> array(
+			
+				'default'	=> '#78a9c0',
+				'setting'	=> 'path_text_color',
+			
+			),
+			'font-size'			=> array(
+			
+				'default'	=> '10px',
+				'setting'	=> 'path_text_size',
+			
+			),
+		
+		),
+		'.slickmap #primaryNav li a:hover'																				=> array(
+		
+			'background-color'	=> array(
+			
+				'default'	=> '#e2f4fd',
+				'setting'	=> 'bgcolor_hover',
+			
+			),
+			'border-color'		=> array(
+			
+				'default'	=> '#97bdcf',
+				'setting'	=> 'bordercolor_hover',
+			
+			),
+		
+		),
+	
+	),
+	'level2'	=> array(
+	
+		'.slickmap #primaryNav li ul li a'																				=> array(
+		
+			'background-color'	=> array(
+			
+				'default'	=> '#cee3ac',
+				'setting'	=> 'bgcolor',
+			
+			),
+			'border-color'		=> array(
+			
+				'default'	=> '#b8da83',
+				'setting'	=> 'bordercolor',
+			
+			),
+			'color'				=> array(
+			
+				'default'	=> '#000000',
+				'setting'	=> 'title_text_color',
+			
+			),
+			'font-size'			=> array(
+			
+				'default'	=> '14px',
+				'setting'	=> 'title_text_size',
+			
+			),
+		
+		),
+		'.slickmap #primaryNav li ul li a:link::after, .slickmap #primaryNav li ul li a:visited::after'					=> array(
+		
+			'color'				=> array(
+			
+				'default'	=> '#8faf5c',
+				'setting'	=> 'path_text_color',
+			
+			),
+			'font-size'			=> array(
+			
+				'default'	=> '10px',
+				'setting'	=> 'path_text_size',
+			
+			),
+		
+		),
+		'.slickmap #primaryNav li ul li a:hover'																		=> array(
+		
+			'background-color'	=> array(
+			
+				'default'	=> '#e7f1d7',
+				'setting'	=> 'bgcolor_hover',
+			
+			),
+			'border-color'		=>  array(
+			
+				'default'	=> '#94b75f',
+				'setting'	=> 'bordercolor_hover',
+			
+			),
+		
+		),
+	
+	),
+	'level3'	=> array(
+	
+		'.slickmap #primaryNav li ul li ul li a'																		=> array(
+		
+			'background-color'	=> array(
+			
+				'default'	=> '#fff7aa',
+				'setting'	=> 'bgcolor',
+			
+			),
+			'border-color'		=> array(
+			
+				'default'	=> '#e3ca4b',
+				'setting'	=> 'bordercolor',
+			
+			),
+			'color'				=> array(
+			
+				'default'	=> '#000000',
+				'setting'	=> 'title_text_color',
+			
+			),
+			'font-size'			=> array(
+			
+				'default'	=> '12px',
+				'setting'	=> 'title_text_size',
+			
+			),
+		
+		),
+		'.slickmap #primaryNav li ul li ul li a:link::after, .slickmap #primaryNav li ul li ul li a:visited::after'		=> array(
+		
+			'color'				=> array(
+			
+				'default'	=> '#ccae14',
+				'setting'	=> 'path_text_color',
+			
+			),
+			'font-size'			=> array(
+			
+				'default'	=> '9px',
+				'setting'	=> 'path_text_size',
+			
+			),
+		
+		),
+		'.slickmap #primaryNav li ul li ul li a:hover'																	=> array(
+		
+			'background-color'	=> array(
+			
+				'default'	=> '#fffce5',
+				'setting'	=> 'bgcolor_hover',
+			
+			),
+			'border-color'		=> array(
+			
+				'default'	=> '#d1b62c',
+				'setting'	=> 'bordercolor_hover',
+			
+			),
+		
+		),
+	
+	),
+
+);
+
+
+
+//define static values for plugin
 define( 'SlickMap_VERSION', '1.3' );
-
 define( 'SlickMap_REQUIRED_WP_VERSION', '4.0' );
-
 define( 'SlickMap_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-
 define( 'SlickMap_PLUGIN_NAME', trim( dirname( SlickMap_PLUGIN_BASENAME ), '/' ) );
-
 define( 'SlickMap_PLUGIN_DIR', untrailingslashit( dirname( __FILE__ ) ) );
-
 define( 'SlickMap_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) );
 
+
+
+//include admin settings
 require_once SlickMap_PLUGIN_DIR . '/settings.php';
 
+
+
+//function to enqueue plugin files
+function slickmap_css_sitemap_frontend_enqueue( array $settings ) {
+
+	if( is_array( $settings ) ) {
+	
+		wp_localize_script( 'slickmap_css_front_js', 'slickmapSettings', $settings );
+	
+	}	//end if( is_array( $settings ) )
+	wp_enqueue_style( 'slickmap_css' );
+	wp_enqueue_script( 'slickmap_css_front_js' );
+
+}	//end slickmap_css_sitemap_frontend_enqueue( array $settings )
+
+
+
+//function to check saved setting value against default. returns saved value if different, false if default.
+function slickmap_css_sitemap_get_saved_setting( $level, $setting, $default ) {
+
+	//get option name and saved value
+	$option = 'slickmap_css_sitemap_' . $level . '_' . $setting;
+	$saved = get_option( $option );
+	//check if saved differs from default, return appropriate value
+	if( $saved == $default || empty( $saved ) ) {
+	
+		return false;
+	
+	}
+	else {
+	
+		return $saved;
+	
+	}	//end if( $saved == $default || empty( $saved ) )
+
+}	//end slickmap_css_sitemap_get_saved_setting( $level, $setting, $default )
+
+
+
+//function to return all style settings as inline <style> string
+function slickmap_css_sitemap_get_saved_styles() {
+
+	//assume all styles are default
+	$styles_are_default = true;
+	
+	//begin building concatenated styles
+	$styles = "<style>\n";
+	
+	//use global defaults
+	global $slickmap_css_sitemap_default_settings;
+	
+	//check each setting and set rules if necessary
+	foreach( $slickmap_css_sitemap_default_settings as $level => $selectors ) {
+	
+		if( $level == 'general' ) {
+		
+			//show/hide gradient (if hide) background-image: none; (this is an oddly implemented rule)
+			if( get_option( 'slickmap_css_sitemap_general_gradient' ) == 'hide' ) {
+			
+				$styles_are_default = false;
+				$styles .= ".slickmap #primaryNav li a {\n	background-image: none !important;\n}\n";
+			
+			}	//end if( get_option( 'slickmap_css_sitemap_general_gradient' ) == 'hide' )
+		
+		}	//end if( $level == 'general' )
+		foreach( $selectors as $selector => $properties ) {
+		
+			$styles .=  $selector . " {\n";
+			
+			foreach( $properties as $property => $values ) {
+			
+				$newrule = slickmap_css_sitemap_get_saved_setting( $level, $values['setting'], $values['default'] );
+				if( $newrule ) {
+				
+					$styles_are_default = false;
+					$styles .= '	' . $property . ": " . $newrule . ";\n";
+				
+				}	//end if( $newrule )
+			
+			}	//end foreach( $properties as $property => $values )
+			$styles .= "}\n";
+		
+		}	//end foreach( $selectors as $selector => $properties )
+	
+	}	//end foreach( $slickmap_css_sitemap_default_settings as $level => $details )
+	
+	//finish building concatenated styles
+	$styles .= "</style>\n";
+	
+	//only return concatenated styles if any saved styles differ from default
+	if( $styles_are_default ) {
+	
+		return '<!-- Slickmap Using Default Styles -->';
+		
+	}
+	else {
+	
+		return $styles;
+	
+	}	//end if( $styles_are_default )
+
+}	//end slickmap_css_sitemap_get_saved_styles()
+
+
+
+
 // add shortcode slickmap
-//e.g. [slickmap]<ul><li>level one</li></ul>[/slickmap]
+//e.g. [slickmap columns="7"]<ul><li>Home</li><li>Level One<ul><li>Level Two<ul><li>Level Three</li></ul></li></ul></li></ul>[/slickmap]
 add_shortcode( 'slickmap', 'slickmap_css_sitemap_shortcode' );
 function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 
-	// attributes allow for manual override of color settings... just in case?
+	// attribute allows manual column setting
 	extract( shortcode_atts(
+	
 		array(
-			'color1' 	=>	'',
-			'color2' 	=>	'',
-			'color3' 	=>	'',
+		
 			'columns'	=>	'7',
+		
 		), $atts )
+	
 	);
 	
 	//include css and js, as well as column count to js
@@ -55,242 +452,25 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 		'columns'	=> $columns,
 	
 	);
-	wp_localize_script( 'slickmap_css_front_js', 'slickmapSettings', $settings_array );
-	wp_enqueue_style( 'slickmap_css' );
-	wp_enqueue_script( 'slickmap_css_front_js' );
+	//if breakpoint is set in options, send value to JS
+	if( get_option( 'slickmap_css_sitemap_general_breakpoint' ) ) {
 	
+		$settings_array['breakpoint'] = get_option( 'slickmap_css_sitemap_general_breakpoint' );
 	
+	}	//end if( get_option( 'slickmap_css_sitemap_general_breakpoint' ) )
+	slickmap_css_sitemap_frontend_enqueue( $settings_array );
 	
 	//fetch options, store non-defaults as css strings in arrays
-		$style_rules = array (
-			'target1'			=>	array ('selector'	=>	'.slickmap #primaryNav li a'),
-			'target1_before'	=>	array ('selector'	=>	'.slickmap #primaryNav li a:link::before, .slickmap #primaryNav li a:visited::before'),
-			'target1_hover'		=>	array ('selector'	=>	'.slickmap #primaryNav li a:hover'),
-			'target2'			=>	array ('selector'	=>	'.slickmap #primaryNav li li a'),
-			'target2_before'	=>	array ('selector'	=>	'.slickmap #primaryNav li li a:link::before, .slickmap #primaryNav li li a:visited::before'),
-			'target2_hover'		=>	array ('selector'	=>	'.slickmap #primaryNav li li a:hover'),
-			'target3'			=>	array ('selector'	=>	'.slickmap #primaryNav li li li a'),
-			'target3_before'	=>	array ('selector'	=>	'.slickmap #primaryNav li li li a:link::before, .slickmap #primaryNav li li li a:visited::before'),
-			'target3_hover'		=>	array ('selector'	=>	'.slickmap #primaryNav li li li a:hover'),
-			'target4'			=>	array ('selector'	=>	'.slickmap #primaryNav #home a'),
-			'target4_before'	=>	array ('selector'	=>	'.slickmap #primaryNav #home a:link::before, .slickmap #primaryNav #home a:visited::before'),
-			'target4_hover'		=>	array ('selector'	=>	'.slickmap #primaryNav #home a:hover'),
-			'target5'			=>	array ('selector'	=>	'.slickmap #primaryNav'),
-			'target6'			=>	array ('selector'	=>	'.slickmap #primaryNav li'),
-		);
-		//level 1 - #primaryNav li a
-			//background: $color; (if background-color≠#c3eafb)
-			if( get_option( 'slickmap_css_sitemap_level1_bgcolor' ) != '#c3eafb' ) {
-				$style_rules['target1']['background-color'] = get_option( 'slickmap_css_sitemap_level1_bgcolor' );
-			}
-			//border: 2px solid $color; (if border-color≠#b5d9ea)
-			if( get_option( 'slickmap_css_sitemap_level1_bordercolor' ) != '#b5d9ea' ) {
-				$style_rules['target1']['border'] = '2px solid ' . get_option( 'slickmap_css_sitemap_level1_bordercolor' );
-			}
-			//title text color: $color; (if color≠black)
-			if( get_option( 'slickmap_css_sitemap_level1_title_text_color' ) != '#000000' ) {
-				$style_rules['target1']['color'] = get_option( 'slickmap_css_sitemap_level1_title_text_color' );
-			}
-			//title font-size: $size; (if font-size≠14px)
-			if( get_option( 'slickmap_css_sitemap_level1_title_text_size' ) != '14px' ) {
-				$style_rules['target1']['font-size'] = get_option( 'slickmap_css_sitemap_level1_title_text_size' );
-			}
-			//(-webkit-,-o-,-moz-)border-radius: $radius; (if border-radius≠5px)
-			if( get_option( 'slickmap_css_sitemap_general_radius' ) != '5px' ) {
-				$style_rules['target1']['-webkit-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target1']['-moz-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target1']['-o-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target1']['border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-			}
-			//background hover color - #primaryNav li a:hover { background-color: $color; } (if background-color≠#e2f4fd)
-			if( get_option( 'slickmap_css_sitemap_level1_bgcolor_hover' ) != '#e2f4fd' ) {
-				$style_rules['target1_hover']['background-color'] =  get_option( 'slickmap_css_sitemap_level1_bgcolor_hover' );
-			}
-			//border hover color - #primaryNav li a:hover { border-color: $color; } (if border-color≠#97bdcf)
-			if( get_option( 'slickmap_css_sitemap_level1_bordercolor_hover' ) != '#97bdcf' ) {
-				$style_rules['target1_hover']['border-color'] =  get_option( 'slickmap_css_sitemap_level1_bordercolor_hover' );
-			}
-			//path text color #primaryNav li a:link:before, #primaryNav li a:visited:before { color: $color; } (if color≠#78a9c0)
-			if( get_option( 'slickmap_css_sitemap_level1_path_text_color' ) != '#78a9c0' ) {
-				$style_rules['target1_before']['color'] =  get_option( 'slickmap_css_sitemap_level1_path_text_color' );
-			}
-			//path font-size #primaryNav li a:link:before, #primaryNav li a:visited:before { font-size: $size; } (if font-size≠10px)
-			if( get_option( 'slickmap_css_sitemap_level1_path_text_size' ) != '10px' ) {
-				$style_rules['target1_before']['font-size'] =  get_option( 'slickmap_css_sitemap_level1_path_text_size' );
-			}
+	$style = slickmap_css_sitemap_get_saved_styles();
 
-		//level 2 - #primaryNav li li a 
-			//background: $color; (if background-color≠#cee3ac)
-			if( get_option( 'slickmap_css_sitemap_level2_bgcolor' ) != '#cee3ac' ) {
-				$style_rules['target2']['background-color'] = get_option( 'slickmap_css_sitemap_level2_bgcolor' );
-			}
-			//border: 2px solid $color; (if border-color≠#b8da83)
-			if( get_option( 'slickmap_css_sitemap_level2_bordercolor' ) != '#b8da83' ) {
-				$style_rules['target2']['border'] = '2px solid ' . get_option( 'slickmap_css_sitemap_level2_bordercolor' );
-			}
-			//title text color: $color; (if color≠black)
-			if( get_option( 'slickmap_css_sitemap_level2_title_text_color' ) != '#000000' ) {
-				$style_rules['target2']['color'] = get_option( 'slickmap_css_sitemap_level2_title_text_color' );
-			}
-			//title font-size: $size; (if font-size≠14px)
-			if( get_option( 'slickmap_css_sitemap_level2_title_text_size' ) != '14px' ) {
-				$style_rules['target2']['font-size'] = get_option( 'slickmap_css_sitemap_level2_title_text_size' );
-			}
-			//(-webkit-,-o-,-moz-)border-radius: $radius; (if border-radius≠5px)
-			if( get_option( 'slickmap_css_sitemap_general_radius' ) != '5px' ) {
-				$style_rules['target2']['-webkit-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target2']['-moz-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target2']['-o-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target2']['border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-			}
-			//background hover color - #primaryNav li li a:hover { background-color: $color; } (if background-color≠#e7f1d7)
-			if( get_option( 'slickmap_css_sitemap_level2_bgcolor_hover' ) != '#e7f1d7' ) {
-				$style_rules['target2_hover']['background-color'] =  get_option( 'slickmap_css_sitemap_level2_bgcolor_hover' );
-			}
-			//border hover color - #primaryNav li li a:hover { border-color: $color; } (if border-color≠#94b75f)
-			if( get_option( 'slickmap_css_sitemap_level2_bordercolor_hover' ) != '#94b75f' ) {
-				$style_rules['target2_hover']['border-color'] =  get_option( 'slickmap_css_sitemap_level2_bordercolor_hover' );
-			}
-			//path text color #primaryNav li li a:link:before, #primaryNav li li a:visited:before { color: $color; } (if color≠#8faf5c)
-			if( get_option( 'slickmap_css_sitemap_level2_path_text_color' ) != '#8faf5c' ) {
-				$style_rules['target2_before']['color'] =  get_option( 'slickmap_css_sitemap_level2_path_text_color' );
-			}
-			//path font-size #primaryNav li li a:link:before, #primaryNav li li a:visited:before { font-size: $size; } (if font-size≠10px)
-			if( get_option( 'slickmap_css_sitemap_level2_path_text_size' ) != '10px' ) {
-				$style_rules['target2_before']['font-size'] =  get_option( 'slickmap_css_sitemap_level2_path_text_size' );
-			}
-
-		//level 3 - #primaryNav li li li a 
-			//background: $color; (if background-color≠#fff7aa)
-			if( get_option( 'slickmap_css_sitemap_level3_bgcolor' ) != '#fff7aa' ) {
-				$style_rules['target3']['background-color'] = get_option( 'slickmap_css_sitemap_level3_bgcolor' );
-			}
-			//border: 2px solid $color; (if border-color≠#e3ca4b)
-			if( get_option( 'slickmap_css_sitemap_level3_bordercolor' ) != '#e3ca4b' ) {
-				$style_rules['target3']['border'] = '2px solid ' . get_option( 'slickmap_css_sitemap_level3_bordercolor' );
-			}
-			//title text color: $color; (if color≠black)
-			if( get_option( 'slickmap_css_sitemap_level3_title_text_color' ) != '#000000' ) {
-				$style_rules['target3']['color'] = get_option( 'slickmap_css_sitemap_level3_title_text_color' );
-			}
-			//title font-size: $size; (if font-size≠12px)
-			if( get_option( 'slickmap_css_sitemap_level3_title_text_size' ) != '12px' ) {
-				$style_rules['target3']['font-size'] = get_option( 'slickmap_css_sitemap_level3_title_text_size' );
-			}
-			//(-webkit-,-o-,-moz-)border-radius: $radius; (if border-radius≠5px)
-			if( get_option( 'slickmap_css_sitemap_general_radius' ) != '5px' ) {
-				$style_rules['target3']['-webkit-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target3']['-moz-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target3']['-o-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target3']['border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-			}
-			//background hover color - #primaryNav li li li a:hover { background-color: $color; } (if background-color≠#fffce5)
-			if( get_option( 'slickmap_css_sitemap_level3_bgcolor_hover' ) != '#fffce5' ) {
-				$style_rules['target3_hover']['background-color'] =  get_option( 'slickmap_css_sitemap_level3_bgcolor_hover' );
-			}
-			//border hover color - #primaryNav li li li a:hover { border-color: $color; } (if border-color≠#d1b62c)
-			if( get_option( 'slickmap_css_sitemap_level3_bordercolor_hover' ) != '#d1b62c' ) {
-				$style_rules['target3_hover']['border-color'] =  get_option( 'slickmap_css_sitemap_level3_bordercolor_hover' );
-			}
-			//path text color #primaryNav li li li a:link:before, #primaryNav li li li a:visited:before { color: $color; } (if color≠#ccae14)
-			if( get_option( 'slickmap_css_sitemap_level3_path_text_color' ) != '#ccae14' ) {
-				$style_rules['target3_before']['color'] =  get_option( 'slickmap_css_sitemap_level3_path_text_color' );
-			}
-			//path font-size #primaryNav li li li a:link:before, #primaryNav li li li a:visited:before { font-size: $size; } (if font-size≠9px)
-			if( get_option( 'slickmap_css_sitemap_level3_path_text_size' ) != '9px' ) {
-				$style_rules['target3_before']['font-size'] =  get_option( 'slickmap_css_sitemap_level3_path_text_size' );
-			}
-
-		//home - #primaryNav #home a
-			//background: $color; (if background-color≠#c3eafb)
-			if( get_option( 'slickmap_css_sitemap_home_bgcolor' ) != '#c3eafb' ) {
-				$style_rules['target4']['background-color'] = get_option( 'slickmap_css_sitemap_home_bgcolor' );
-			}
-			//border: 2px solid $color; (if border-color≠#b5d9ea)
-			if( get_option( 'slickmap_css_sitemap_home_bordercolor' ) != '#b5d9ea' ) {
-				$style_rules['target4']['border'] = '2px solid ' . get_option( 'slickmap_css_sitemap_home_bordercolor' );
-			}
-			//title text color: $color; (if color≠black)
-			if( get_option( 'slickmap_css_sitemap_home_title_text_color' ) != '#000000' ) {
-				$style_rules['target4']['color'] = get_option( 'slickmap_css_sitemap_home_title_text_color' );
-			}
-			//title font-size: $size; (if font-size≠14px)
-			if( get_option( 'slickmap_css_sitemap_home_title_text_size' ) != '14px' ) {
-				$style_rules['target4']['font-size'] = get_option( 'slickmap_css_sitemap_home_title_text_size' );
-			}
-			//(-webkit-,-o-,-moz-)border-radius: $radius; (if border-radius≠5px)
-			if( get_option( 'slickmap_css_sitemap_general_radius' ) != '5px' ) {
-				$style_rules['target4']['-webkit-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target4']['-moz-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target4']['-o-border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-				$style_rules['target4']['border-radius'] = get_option( 'slickmap_css_sitemap_general_radius' );
-			}
-			//background hover color - #primaryNav li a:hover { background-color: $color; } (if background-color≠#e2f4fd)
-			if( get_option( 'slickmap_css_sitemap_level1_bgcolor_hover' ) != '#e2f4fd' ) {
-				$style_rules['target4_hover']['background-color'] =  get_option( 'slickmap_css_sitemap_level1_bgcolor_hover' );
-			}
-			//border hover color - #primaryNav li a:hover { border-color: $color; } (if border-color≠#97bdcf)
-			if( get_option( 'slickmap_css_sitemap_level1_bordercolor_hover' ) != '#97bdcf' ) {
-				$style_rules['target4_hover']['border-color'] =  get_option( 'slickmap_css_sitemap_level1_bordercolor_hover' );
-			}
-			//path text color #primaryNav li a:link:before, #primaryNav li a:visited:before { color: $color; } (if color≠#78a9c0)
-			if( get_option( 'slickmap_css_sitemap_home_path_text_color' ) != '#78a9c0' ) {
-				$style_rules['target4_before']['color'] =  get_option( 'slickmap_css_sitemap_home_path_text_color' );
-			}
-			//path font-size #primaryNav li a:link:before, #primaryNav li a:visited:before { font-size: $size; } (if font-size≠10px)
-			if( get_option( 'slickmap_css_sitemap_home_path_text_size' ) != '10px' ) {
-				$style_rules['target4_before']['font-size'] =  get_option( 'slickmap_css_sitemap_home_path_text_size' );
-			}
-	//check if atts included any colors, change any array strings that they would override
-		//if so, override array string for
-			//#primaryNav li a { background-color: $color1;}
-			//#primaryNav li li a { background-color: $color2;}
-			//#primaryNav li li li a { background-color: $color3;}
-	//add global rules for entire sitemap to array
-	//show/hide gradient (if hide) background-image: none;
-	if( get_option( 'slickmap_css_sitemap_general_gradient' ) == 'hide' ) {
-		$style_rules['target1']['background-image'] =  'none !important';
-	}
-	//padding (if≠10px 0) $padding;
-	$padding_array = get_option( 'slickmap_css_sitemap_general_padding' );
-	$padding_string = $padding_array['top'] . ' ' . $padding_array['right'] . ' ' . $padding_array['bottom'] . ' ' . $padding_array['left'];
-	if( $padding_string != '10px 0px 10px 0px' ) {
-		$style_rules['target1']['padding'] =  $padding_string . ' !important';
-	}
-	//font stack for sitemap
-	if( get_option( 'slickmap_css_sitemap_general_font_family' ) != 'Gotham, Helvetica, Arial, sans-serif' ) {
-		$style_rules['target5']['font-family'] =  get_option( 'slickmap_css_sitemap_general_font_family' ) . ' !important';
-	}
-	//create style rules to override included stylesheet
-	$style = '<style>';
-	//$style .= foreach css selector in array (#primaryNav li a; #primaryNav li a:hover; #primaryNav li a:link:before, #primaryNav li a:visited:before; #primaryNav li li a; #primaryNav li li a:hover; #primaryNav li li a:link:before, #primaryNav li li a:visited:before; #primaryNav li li li a; #primaryNav li li li a:hover; #primaryNav li li li a:link:before, #primaryNav li li li a:visited:before; #primaryNav #home a; #primaryNav #home a:hover; #primaryNav #home a:link:before, #primaryNav #home a:visited:before)
-	foreach( $style_rules as $key => $value ) {
-		//return selector {
-		$style .= $value['selector'] . ' { ';
-		//foreach style rule
-			foreach( $value as $k => $v ) {
-			//return style rule pair from array
-				$style .= $k . ': ' . $v . '; ';
-			}
-		//return }
-		$style .= ' } ';
-	}
-	$style .= '</style>';
-	$sitemap_structure = '<script type="text/javascript">
-	jQuery(document).ready(function () {
-		jQuery(".slickmap>ul").attr("id", "primaryNav");
-		jQuery("#primaryNav>li:first-child").attr("id", "home");
-	});
-	</script>' . $content;
-	
 	//concatenate all content for output
-	//style tag here
 	$sitemap = $style;
 	//open containers
 	$sitemap .= '<div class="slickmap sitemap">';
-	// modified ul content here
-	$sitemap .= $sitemap_structure . '</div>';
-	//final output of sitemap
+	//wrapped ul content here
+	$sitemap .= "\n		" . $content . "\n";
+	$sitemap .= '</div>';
+	//return final output of sitemap
     return $sitemap;
 
 }	//end slickmap_css_sitemap_shortcode( $atts, $content = null )
@@ -298,11 +478,11 @@ function slickmap_css_sitemap_shortcode( $atts, $content = null ) {
 
 
 
-//include slickmap css; sets defaults and display style
-add_action( 'wp_enqueue_scripts', 'include_slickmap_css_sitemap_files' );
+//register slickmap css; sets defaults and display style. register script to name and attach id/classes to uls/lis
+add_action( 'wp_enqueue_scripts', 'register_slickmap_css_sitemap_files' );
 function register_slickmap_css_sitemap_files() {
 
-	wp_register_style( 'slickmap_css', SlickMap_PLUGIN_URL . '/css/slickmap.css', array(), '1.3' );
-	wp_register_script( 'slickmap_css_front_js', SlickMap_PLUGIN_URL . '/js/slickmap_css_sitemap_setclass.js', array( 'jquery' ), '1.3', true );
+	wp_register_style( 'slickmap_css', SlickMap_PLUGIN_URL . '/css/slickmap.css', array(), SlickMap_VERSION );
+	wp_register_script( 'slickmap_css_front_js', SlickMap_PLUGIN_URL . '/js/slickmap_css_sitemap_setclass.js', array( 'jquery' ), SlickMap_VERSION, true );
 
 }	//end include_slickmap_css_sitemap_files()

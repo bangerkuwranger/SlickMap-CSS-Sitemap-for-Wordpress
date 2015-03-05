@@ -86,8 +86,8 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 	text-indent: 0 !important;
 }
 
-.slickmap #primaryNav li a:link::before,
-.slickmap #primaryNav li a:visited::before {
+.slickmap #primaryNav li a:link::after,
+.slickmap #primaryNav li a:visited::after {
 	text-indent: .25em !important;	
 }
 
@@ -117,7 +117,6 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 .slickmap {
 	background: white;
 	color: black;
-	padding: 48px;
 	font-family: Gotham, Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	line-height: 1;
@@ -126,7 +125,6 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 	margin: 1em auto;
 	float: none;
 	width: 100%;
-	max-width: 1280px;
 }
 .slickmap h1 {
 	font-weight: bold;
@@ -187,8 +185,10 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 	color: black;	
 	background: #c3eafb url('images/white-highlight.png') top left repeat-x;
 	border: 2px solid #b5d9ea;
+	-o-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	-webkit-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; 
 	-moz-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; /* FF 3.5+ */	
 	text-transform: uppercase;
@@ -200,8 +200,8 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 #primaryNav li:last-child {
 	background: url('images/L1-right.png') center top no-repeat;
 }
-.slickmap a:link:before,
-.slickmap a:visited:before {
+.slickmap a:link:after,
+.slickmap a:visited:after {
 	content: " "attr(href)" ";
 	display: block;
 	text-transform: lowercase;
@@ -209,8 +209,8 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 	margin-bottom: 5px;
 	word-wrap: break-word;
 }
-#primaryNav li a:link:before,
-#primaryNav li a:visited:before {
+#primaryNav li a:link:after,
+#primaryNav li a:visited:after {
 	color: #78a9c0;
 }
 
@@ -226,6 +226,10 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 #primaryNav li li a {
 	background-color: #cee3ac;
 	border-color: #b8da83;
+	-o-border-radius: inherit;
+	-moz-border-radius: inherit;
+	-webkit-border-radius: inherit;
+	border-radius: inherit;
 }
 #primaryNav li li a:hover {
 	border-color: #94b75f;
@@ -237,8 +241,8 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 #primaryNav li li:last-child {
 	background: url('images/vertical-line.png') center bottom repeat-y;
 }
-#primaryNav li li a:link:before,
-#primaryNav li li a:visited:before {
+#primaryNav li li a:link:after,
+#primaryNav li li a:visited:after {
 	color: #8faf5c;
 }
 
@@ -262,6 +266,10 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 	padding: 5px 0;
 	width: 80%;
 	float: right;
+	-o-border-radius: inherit;
+	-moz-border-radius: inherit;
+	-webkit-border-radius: inherit;
+	border-radius: inherit;
 }
 #primaryNav li li li a:hover {
 	background-color: #fffce5;
@@ -274,8 +282,8 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 #primaryNav li li li:last-child {
 	background: url('images/L3-bottom.png') left center no-repeat;
 }
-#primaryNav li li li a:link:before,
-#primaryNav li li li a:visited:before {
+#primaryNav li li li a:link:after,
+#primaryNav li li li a:visited:after {
 	color: #ccae14;
 	font-size: 9px;
 }
@@ -313,9 +321,28 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 	background-color: #fffce5;
 	border-color: #d1b62c;
 }
-#utilityNav li a:link:before,
-#utilityNav li a:visited:before {
+#utilityNav li a:link:after,
+#utilityNav li a:visited:after {
 	color: #ccae14;
 	font-size: 9px;
 	margin-bottom: 3px;
+}
+
+
+/* ------------------------------------------------------------
+	Responsive Adjusments
+------------------------------------------------------------ */
+
+#primaryNav.mobile li {
+	width: 95% !important;
+}
+
+#primaryNav.mobile #home a {
+	width: 100% !important;
+}
+
+#primaryNav.moblie #home,
+#primaryNav.mobile>li,
+#primaryNav.mobile>li:last-child {
+	background-image: none !important;
 }

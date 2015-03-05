@@ -1,9 +1,5 @@
 <?php
-/**
- * Plugin Name: SlickMap CSS Sitemap
- * Plugin URI: https://github.com/bangerkuwranger
- * Description: Wordpress plugin to create a custom HTML/CSS sitemap. Set your colors and fonts, then wrap any set of ULs in a shortcode to make an interactive sitemap. Uses Matt Everson's SlickMap CSS (astuteo.com); give him money if you dig this. 
- * Version: 1.3
+/*
  * File: settings.php
  * Author: Chad A. Carino
  * Author URI: http://www.chadacarino.com
@@ -246,9 +242,67 @@ function slickmap_css_sitemap_menu() {
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'SlickMap CSS General Settings', 'General', 'manage-options', 'slickmap_css_sitemap_menu_general', create_function( null, 'slickmap_css_sitemap_menu_content( "general" );' ) ); 
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'SlickMap CSS Colors', 'Colors', 'manage-options', 'slickmap_css_sitemap_menu_colors', create_function( null, 'slickmap_css_sitemap_menu_content( "colors" );' ) ); 
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'SlickMap CSS Text Options', 'Text', 'manage-options', 'slickmap_css_sitemap_menu_text', create_function( null, 'slickmap_css_sitemap_menu_content( "text" );' ) );
+	add_submenu_page( 'slickmap_css_sitemap_menu', 'Slickmap Settings Preview', 'Preview', 'manage-options', 'slickmap_css_sitemap_menu_preview', create_function( null, 'slickmap_css_sitemap_menu_content( "preview" );' ) );
 
 }	//end slickmap_css_sitemap_menu()
 
+function include_frontend_css_admin() {
+
+	echo '<link rel="stylesheet" id="slickmap_css-css" href="' . SlickMap_PLUGIN_URL . '/css/slickmap.css?ver=' . SlickMap_VERSION . '" type="text/css" media="all">';
+
+}	//end include_frontend_css_admin()
+
+
+
+function slickmap_css_sitemap_menu_preview_callback() {
+	
+	include_frontend_css_admin();
+	$styles = slickmap_css_sitemap_get_saved_styles();
+	$content = '
+	<ul id="primaryNav" class="col3" style="background: #fff; padding: 1em;">
+		<li id="home">
+			<a href="#home">Home</a>
+		</li>
+		<li>
+			<a href="#level1-1">Level One - 1</a>
+		</li>
+		<li>
+			<a href="#level1-2">Level One - 2</a>
+			<ul>
+				<li>
+					<a href="#level2-1">Level Two - 1</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#level1-3">Level One - 3</a>
+			<ul>
+				<li>
+					<a href="#level2-2">Level Two - 2</a>
+					<ul>
+						<li>
+							<a href="#level3-1">Level Three - 1</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	';
+	$sitemap = $styles;
+	$sitemap .= '<div class="slickmap sitemap">';
+	//wrapped ul content here
+	$sitemap .= "\n		" . $content . "\n";
+	$sitemap .= '</div>';
+	
+	echo '
+		<h3>Preview Sitemap Settings:</h3>
+		<hr/>';
+	echo '
+		' . $sitemap . '
+	';
+
+}	//end slickmap_css_sitemap_menu_preview_callback()
 
 //callback for settings tabs
 function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
@@ -270,26 +324,41 @@ function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
         	<a href="?page=slickmap_css_sitemap_menu&tab=general" class="nav-tab <?php echo $active_tab == 'general' ? 'nav-tab-active' : ''; ?>">General</a>
             <a href="?page=slickmap_css_sitemap_menu&tab=colors" class="nav-tab <?php echo $active_tab == 'colors' ? 'nav-tab-active' : ''; ?>">Colors</a>
             <a href="?page=slickmap_css_sitemap_menu&tab=text" class="nav-tab <?php echo $active_tab == 'text' ? 'nav-tab-active' : ''; ?>">Text Options</a>
+            <a href="?page=slickmap_css_sitemap_menu&tab=preview" class="nav-tab <?php echo $active_tab == 'preview' ? 'nav-tab-active' : ''; ?>">Preview</a>
         </h2>
          
         <form method="post" action="options.php">
         
 			
             <?php
-             if( $active_tab == 'colors' ) {
+            if( $active_tab == 'colors' ) {
+            
              	settings_fields( 'slickmap_css_sitemap_menu_colors' );
-				do_settings_sections( 'slickmap_css_sitemap_menu_colors' ); 
+				do_settings_sections( 'slickmap_css_sitemap_menu_colors' );
+				submit_button();
+            
             }
-             elseif( $active_tab == 'text' ) {
+            elseif( $active_tab == 'text' ) {
+            
              	settings_fields( 'slickmap_css_sitemap_menu_text' );
-				do_settings_sections( 'slickmap_css_sitemap_menu_text' ); 
+				do_settings_sections( 'slickmap_css_sitemap_menu_text' );
+				submit_button();
+            
+            }
+            elseif( $active_tab == 'preview' ) {
+            
+             	slickmap_css_sitemap_menu_preview_callback();
+            
             }
             else {
+            
             	settings_fields( 'slickmap_css_sitemap_menu_general' );
-				do_settings_sections( 'slickmap_css_sitemap_menu_general' ); 
-            }
+				do_settings_sections( 'slickmap_css_sitemap_menu_general' );
+				submit_button();
+            
+            }	//end if( $active_tab == 'colors' )
            
-        	submit_button(); ?>
+        	?>
              
         </form>
     </div><!-- /.wrap -->
@@ -306,22 +375,26 @@ function slickmap_css_sitemap_settings_api_init() {
 	
 	//add the general settings section
 	add_settings_section( 'slickmap_css_sitemap_general', 'Global Sitemap Style', 'slickmap_css_sitemap_general_callback', 'slickmap_css_sitemap_menu_general');
-
-	//register the fields for each general setting
-	add_settings_field( 'slickmap_css_sitemap_general_gradient', 'Use White Gradient', 'slickmap_css_sitemap_general_gradient_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
-	add_settings_field( 'slickmap_css_sitemap_general_font_family', 'Font Family', 'slickmap_css_sitemap_general_font_family_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
-	add_settings_field( 'slickmap_css_sitemap_general_radius', 'Border Radius', 'slickmap_css_sitemap_general_radius_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
-	add_settings_field( 'slickmap_css_sitemap_general_padding', 'Padding', 'slickmap_css_sitemap_general_padding_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
 	
 	//register general settings for savin'
 	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_gradient' );
 	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_font_family' );
 	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_radius' );
 	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_padding' );
+	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_breakpoint' );
+
+	//add the fields for each general setting
+	add_settings_field( 'slickmap_css_sitemap_general_gradient', 'Use White Gradient', 'slickmap_css_sitemap_general_gradient_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
+	add_settings_field( 'slickmap_css_sitemap_general_font_family', 'Font Family', 'slickmap_css_sitemap_general_font_family_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
+	add_settings_field( 'slickmap_css_sitemap_general_radius', 'Border Radius', 'slickmap_css_sitemap_general_radius_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
+	add_settings_field( 'slickmap_css_sitemap_general_padding', 'Padding', 'slickmap_css_sitemap_general_padding_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
+	add_settings_field( 'slickmap_css_sitemap_general_breakpoint', 'Mobile Breakpoint', 'slickmap_css_sitemap_general_breakpoint_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
+	
+	
 	
 	//create sections, settings, and fields for each level
 	global $slickmap_css_sitemap_default_levels;
-	foreach( $slickmap_css_sitemap_default_levels as $level ) {
+	foreach( $slickmap_css_sitemap_default_levels as $level => $title ) {
 	
 		New slickmap_level( $level );
 	
@@ -350,15 +423,15 @@ function slickmap_css_sitemap_general_gradient_callback() {
 	if( $gradient ) {
 	
 	?>
-		<input type="radio" name="slickmap_css_gradient" value="show" <?php checked( $gradient, 'show' ) ?> > Frosty<br/>
-		<input type="radio" name="slickmap_css_gradient" value="hide" <?php checked( $gradient, 'hide' ) ?> > Flat
+		<input type="radio" name="slickmap_css_sitemap_general_gradient" value="show" <?php checked( $gradient, 'show' ) ?> > Frosty<br/>
+		<input type="radio" name="slickmap_css_sitemap_general_gradient" value="hide" <?php checked( $gradient, 'hide' ) ?> > Flat
 	<?php
 	
 	}
 	else {
 	
-		echo '<input type="radio" name="slickmap_css_gradient" value="show" checked="checked">Frosty<br/>
-		<input type="radio" name="slickmap_css_gradient" value="hide">Flat';
+		echo '<input type="radio" name="slickmap_css_sitemap_general_gradient" value="show" checked="checked">Frosty<br/>
+		<input type="radio" name="slickmap_css_sitemap_general_gradient" value="hide">Flat';
 	
 	}	//end if( $gradient )
 	echo '</p>';
@@ -372,12 +445,12 @@ function slickmap_css_sitemap_general_font_family_callback() {
 
 	if( get_option( 'slickmap_css_sitemap_general_font_family' ) ) {
 	
-		echo "<p><input size='90' name='slickmap_css_sitemap_general_font_family' id='slickmap_css_sitemap_general_font_family' type='text' value='" . get_option( 'slickmap_css_sitemap_general_font_family' ) . "' /></p>";
+		echo '<p><input size="90" name="slickmap_css_sitemap_general_font_family" id="slickmap_css_sitemap_general_font_family" type="text" value="' . get_option( 'slickmap_css_sitemap_general_font_family' ) . '" /></p>';
 	
 	}
 	else {
 	
-		echo "<p><input size='90' name='slickmap_css_sitemap_general_font_family' id='slickmap_css_sitemap_general_font_family' type='text' value='Gotham, Helvetica, Arial, sans-serif' /></p>";
+		echo '<p><input size="90" name="slickmap_css_sitemap_general_font_family" id="slickmap_css_sitemap_general_font_family" type="text" value="Gotham, Helvetica, Arial, sans-serif" /></p>';
 	
 	}	//end if( get_option( 'slickmap_css_sitemap_general_font_family' ) )
 
@@ -390,12 +463,12 @@ function slickmap_css_sitemap_general_radius_callback() {
 
 	if( get_option( 'slickmap_css_sitemap_general_radius' ) ) {
 	
-		echo "<p><input size='10' name='slickmap_css_sitemap_general_radius' id='slickmap_css_sitemap_general_radius' type='text' value='" . get_option( 'slickmap_css_sitemap_general_radius' ) . "' /></p>";
+		echo '<p><input size="18" name="slickmap_css_sitemap_general_radius" id="slickmap_css_sitemap_general_radius" type="text" value="' . get_option( 'slickmap_css_sitemap_general_radius' ) . '" /></p>';
 	
 	}
 	else {
 	
-		echo "<p><input size='10' name='slickmap_css_sitemap_general_radius' id='slickmap_css_sitemap_general_radius' type='text' value='5px' /></p>";
+		echo '<p><input size="18" name="slickmap_css_sitemap_general_radius" id="slickmap_css_sitemap_general_radius" type="text" value="5px" /></p>';
 	
 	}	//end if( get_option( 'slickmap_css_sitemap_general_radius' ) )
 
@@ -414,25 +487,45 @@ function slickmap_css_sitemap_general_padding_callback() {
 	);
 	if( get_option( 'slickmap_css_sitemap_general_padding' ) ) {
 	
-		$padding = get_option( 'slickmap_css_sitemap_general_padding' );
+		$padding = explode( ' ', get_option( 'slickmap_css_sitemap_general_padding' ) );
 	
 	}	//end if( get_option( 'slickmap_css_sitemap_general_padding' ) )
-	echo "<p>Top: <input size='10' name='slickmap_css_sitemap_general_padding_top' id='slickmap_css_sitemap_general_padding_top' type='text' value='" . $padding['top'] . "' /></p>";
-	echo "<p>Bottom: <input size='10' name='slickmap_css_sitemap_general_padding_bottom' id='slickmap_css_sitemap_general_padding_bottom' type='text' value='" . $padding['bottom'] . "' /></p>";
-	echo "<p>Right: <input size='10' name='slickmap_css_sitemap_general_padding_right' id='slickmap_css_sitemap_general_padding_right' type='text' value='" . $padding['right'] . "' /></p>";
-	echo "<p>Left: <input size='10' name='slickmap_css_sitemap_general_padding_left' id='slickmap_css_sitemap_general_padding_left' type='text' value='" . $padding['left'] . "' /></p>";
-	update_option( 'slickmap_css_sitemap_general_padding', $padding );
+	echo '<p><span style="min-width: 8em; display: inline-block">Top: </span><input size="10" class="slickmap_css_sitemap_general_padding" name="slickmap_css_sitemap_general_padding_top" id="slickmap_css_sitemap_general_padding_top" type="text" value="' . $padding[0] . '" /></p>';
+	echo '<p><span style="min-width: 8em; display: inline-block">Right: </span><input size="10" class="slickmap_css_sitemap_general_padding" name="slickmap_css_sitemap_general_padding_right" id="slickmap_css_sitemap_general_padding_right" type="text" value="' . $padding[1] . '" /></p>';
+	echo '<p><span style="min-width: 8em; display: inline-block">Bottom: </span><input size="10" class="slickmap_css_sitemap_general_padding" name="slickmap_css_sitemap_general_padding_bottom" id="slickmap_css_sitemap_general_padding_bottom" type="text" value="' . $padding[2] . '" /></p>';
+	echo '<p><span style="min-width: 8em; display: inline-block">Left: </span><input size="10" class="slickmap_css_sitemap_general_padding" name="slickmap_css_sitemap_general_padding_left" id="slickmap_css_sitemap_general_padding_left" type="text" value="' . $padding[3] . '" /></p>';
+	//JS concatenates all four visible field values ON CHANGE of any field into hidden field, the value of which is saved to registered setting.
+	$padding_string = $padding[0] . ' ' . $padding[1] . ' ' . $padding[2] . ' ' . $padding[3];
+	echo '<input name="slickmap_css_sitemap_general_padding" id="slickmap_css_sitemap_general_padding" type="hidden" value="' . $padding_string . '" />';
 
 }	//end slickmap_css_sitemap_general_padding_callback()
 
 
+function slickmap_css_sitemap_general_breakpoint_callback() {
+
+	echo '<p>Enter the window with in pixels at which the sitemap changes to the vertical mobile style.<br/>Do not include units; numbers only. Default is 768.<br/>Enter "0" to disable mobile style.</p><p>';
+	if( get_option( 'slickmap_css_sitemap_general_breakpoint' ) ) {
+	
+		echo '<input size="8" name="slickmap_css_sitemap_general_breakpoint" id="slickmap_css_sitemap_general_breakpoint" type="number" value="' . get_option( 'slickmap_css_sitemap_general_breakpoint' ) . '" />px</p>';
+	
+	}
+	else {
+	
+		echo '<input size="8" name="slickmap_css_sitemap_general_breakpoint" id="slickmap_css_sitemap_general_breakpoint" type="number" value="768" />px</p>';
+	
+	}	//end if( get_option( 'slickmap_css_sitemap_general_breakpoint' ) )
+
+}	//end slickmap_css_sitemap_general_breakpoint_callback()
 
 
-//include colorpicker and attach to color inputs
-function include_colorpicker_script_for_slickmap_options() {
-	wp_enqueue_script( 'wp-color-picker' );
-	// load the custom script
-	wp_enqueue_script( 'slickmap_css_sitemap_admin_js', SlickMap_PLUGIN_URL . 'js/slickmap_css_sitemap_adminfields.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
-	wp_enqueue_style( 'wp-color-picker' );
-}
+
+
+//include colorpicker and script to attach to color inputs
 add_action( 'admin_enqueue_scripts', 'include_colorpicker_script_for_slickmap_options' );
+function include_colorpicker_script_for_slickmap_options() {
+
+	wp_enqueue_script( 'wp-color-picker' );
+	wp_enqueue_script( 'slickmap_css_sitemap_admin_js', SlickMap_PLUGIN_URL . '/js/slickmap_css_sitemap_adminfields.js', array( 'jquery', 'wp-color-picker' ), SlickMap_VERSION, true );
+	wp_enqueue_style( 'wp-color-picker' );
+
+}	//end function include_colorpicker_script_for_slickmap_options()
