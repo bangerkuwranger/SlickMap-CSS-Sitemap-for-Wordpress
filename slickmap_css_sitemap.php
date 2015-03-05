@@ -56,25 +56,25 @@ $slickmap_css_sitemap_default_settings = array(
 			
 			'background-color'	=> array(
 			
-				'default'	=> '#c3eafb',
+				'default'	=> '',
 				'setting'	=> 'bgcolor',
 			
 			),
 			'border-color'		=> array(
 			
-				'default'	=> '#b5d9ea',
+				'default'	=> '',
 				'setting'	=> 'bordercolor',
 			
 			),
 			'color'				=> array(
 			
-				'default'	=> '#000000',
+				'default'	=> '',
 				'setting'	=> 'title_text_color',
 			
 			),
 			'font-size'			=> array(
 			
-				'default'	=> '14px',
+				'default'	=> '',
 				'setting'	=> 'title_text_size',
 			
 			),
@@ -84,13 +84,13 @@ $slickmap_css_sitemap_default_settings = array(
 		
 			'color'				=> array(
 			
-				'default'	=> '#78a9c0',
+				'default'	=> '',
 				'setting'	=> 'path_text_color',
 			
 			),
 			'font-size'			=> array(
 			
-				'default'	=> '10px',
+				'default'	=> '',
 				'setting'	=> 'path_text_size',
 			
 			),
@@ -100,13 +100,13 @@ $slickmap_css_sitemap_default_settings = array(
 		
 			'background-color'	=> array(
 			
-				'default'	=> '#e2f4fd',
+				'default'	=> '',
 				'setting'	=> 'bgcolor_hover',
 			
 			),
 			'border-color'		=> array(
 			
-				'default'	=> '#97bdcf',
+				'default'	=> '',
 				'setting'	=> 'bordercolor_hover',
 			
 			),

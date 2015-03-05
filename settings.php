@@ -16,7 +16,10 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-$slickmap_css_sitemap_default_levels = array (
+
+
+//display names for levels; also iterated over to create all 'slickmap_level' objects and their settings fields
+$slickmap_css_sitemap_level_names = array (
 
 	'home'		=> 'Home',
 	'level1'	=> 'One',
@@ -28,29 +31,7 @@ $slickmap_css_sitemap_default_levels = array (
 
 
 
-$slickmap_css_sitemap_default_colors = array (
-
-	'slickmap_css_sitemap_home_bgcolor'				=> '#c3eafb',
-	'slickmap_css_sitemap_home_bgcolor_hover'		=> '#e2f4fd',
-	'slickmap_css_sitemap_home_bordercolor'			=> '#b5d9ea',
-	'slickmap_css_sitemap_home_bordercolor_hover'	=> '#97bdcf',
-	'slickmap_css_sitemap_level1_bgcolor'			=> '#c3eafb',
-	'slickmap_css_sitemap_level1_bgcolor_hover'		=> '#e2f4fd',
-	'slickmap_css_sitemap_level1_bordercolor'		=> '#b5d9ea',
-	'slickmap_css_sitemap_level1_bordercolor_hover'	=> '#97bdcf',
-	'slickmap_css_sitemap_level2_bgcolor'			=> '#cee3ac',
-	'slickmap_css_sitemap_level2_bgcolor_hover'		=> '#e7f1d7',
-	'slickmap_css_sitemap_level2_bordercolor'		=> '#b8da83',
-	'slickmap_css_sitemap_level2_bordercolor_hover'	=> '#94b75f',
-	'slickmap_css_sitemap_level3_bgcolor'			=> '#fff7aa',
-	'slickmap_css_sitemap_level3_bgcolor_hover'		=> '#fffce5',
-	'slickmap_css_sitemap_level3_bordercolor'		=> '#e3ca4b',
-	'slickmap_css_sitemap_level3_bordercolor_hover'	=> '#d1b62c',
-
-);
-
-	
-
+//general callback for each level's color settings section header
 function slickmap_css_sitemap_colors_section_callback( $arg ) {
  	
  	$section = $arg['title'];
@@ -60,12 +41,14 @@ function slickmap_css_sitemap_colors_section_callback( $arg ) {
 
 
 
+//general callback for each color setting's field
 function slickmap_css_sitemap_color_field_callback( $args ) {
 
 	$level = $args['label_for'];
 	$type = $args['type'];
-	global $slickmap_css_sitemap_default_colors;
+	//set option name
 	$setting = 'slickmap_css_sitemap_' . $level . '_' . $type;
+	//use saved setting as value; fallback to default from $slickmap_css_sitemap_default_settings if no value is saved
 	if ( get_option( $setting ) ) {
 	
 		$value = get_option( $setting );
@@ -73,38 +56,39 @@ function slickmap_css_sitemap_color_field_callback( $args ) {
 	}
 	else {
 	
-		$value = $slickmap_css_sitemap_default_colors[$setting];
+		global $slickmap_css_sitemap_default_settings;
+		$color_setting_to_property = array (
+
+			'bgcolor'			=> 'background-color',
+			'bgcolor_hover'		=> 'background-color',
+			'bordercolor'		=> 'border-color',
+			'bordercolor_hover'	=> 'border-color',
+
+		);
+		$property = $color_setting_to_property[$type];
+		$level_defaults = $slickmap_css_sitemap_default_settings[$level];
+		$default_keys = array_keys( $level_defaults );
+		if( strpos( $type, 'hover' ) !== false ) {
+	
+			$selector = $default_keys[2];
+	
+		}
+		else {
+	
+			$selector = $default_keys[0];
+	
+		}	//end if( strpos( $type, 'hover' ) !== false )
+		$value = $level_defaults[$selector][$property]['default'];
 	
 	}	//end if ( get_option( $setting ) )
+	//create input for color setting
 	echo '<input name="' . $setting . '" id="' . $setting . '" class="iris-color-picker-field" type="text" value="' . $value . '" />';
 
 }	//end slickmap_css_sitemap_color_field_callback( $args )
 
 
 
-$slickmap_css_sitemap_default_text = array (
-
-	'slickmap_css_sitemap_home_title_text_color'	=> '#000000',
-	'slickmap_css_sitemap_home_path_text_color'		=> '#78a9c0',
-	'slickmap_css_sitemap_home_title_text_size'		=> '14px',
-	'slickmap_css_sitemap_home_path_text_size'		=> '10px',
-	'slickmap_css_sitemap_level1_title_text_color'	=> '#000000',
-	'slickmap_css_sitemap_level1_path_text_color'	=> '#78a9c0',
-	'slickmap_css_sitemap_level1_title_text_size'	=> '14px',
-	'slickmap_css_sitemap_level1_path_text_size'	=> '10px',
-	'slickmap_css_sitemap_level2_title_text_color'	=> '#000000',
-	'slickmap_css_sitemap_level2_path_text_color'	=> '#8faf5c',
-	'slickmap_css_sitemap_level2_title_text_size'	=> '14px',
-	'slickmap_css_sitemap_level2_path_text_size'	=> '10px',
-	'slickmap_css_sitemap_level3_title_text_color'	=> '#000000',
-	'slickmap_css_sitemap_level3_path_text_color'	=> '#ccae14',
-	'slickmap_css_sitemap_level3_title_text_size'	=> '12px',
-	'slickmap_css_sitemap_level3_path_text_size'	=> '9px',
-
-);
-
-	
-
+//general callback for each level's text settings section header
 function slickmap_css_sitemap_text_section_callback( $arg ) {
  	
  	$section = $arg['title'];
@@ -114,13 +98,15 @@ function slickmap_css_sitemap_text_section_callback( $arg ) {
 
 
 
+//general callback for each text setting's field
 function slickmap_css_sitemap_text_field_callback( $args ) {
 
 	$level = $args['label_for'];
 	$type = $args['type'];
 	$fieldtype = $args['field'];
-	global $slickmap_css_sitemap_default_text;
+	//set option name
 	$setting = 'slickmap_css_sitemap_' . $level . '_' . $type;
+	//use saved setting as value; fallback to default from $slickmap_css_sitemap_default_settings if no value is saved
 	if ( get_option( $setting ) ) {
 	
 		$value = get_option( $setting );
@@ -128,7 +114,30 @@ function slickmap_css_sitemap_text_field_callback( $args ) {
 	}
 	else {
 	
-		$value = $slickmap_css_sitemap_default_text[$setting];
+		global $slickmap_css_sitemap_default_settings;
+		$text_setting_to_property = array (
+
+			'title_text_color'	=> 'color',
+			'path_text_color'	=> 'color',
+			'title_text_size'	=> 'font-size',
+			'path_text_size'	=> 'font-size',
+
+		);
+		$property = $text_setting_to_property[$type];
+		$level_defaults = $slickmap_css_sitemap_default_settings[$level];
+		$default_keys = array_keys( $level_defaults );
+		if( strpos( $type, 'path' ) !== false ) {
+	
+			$selector = $default_keys[1];
+	
+		}
+		else {
+	
+			$selector = $default_keys[0];
+	
+		}	//end if( strpos( $type, 'path' ) !== false )
+		$value = $level_defaults[$selector][$property]['default'];
+		
 	
 	}	//end if ( get_option( $setting ) )
 	if( $fieldtype == 'color' ) {
@@ -157,8 +166,8 @@ class slickmap_level {
 	function __construct( $id ) {
 	
 		$this->level_id = $id;
-		global $slickmap_css_sitemap_default_levels;
-		$this->level_title = $slickmap_css_sitemap_default_levels[$id];
+		global $slickmap_css_sitemap_level_names;
+		$this->level_title = $slickmap_css_sitemap_level_names[$id];
 		$this->_color_settings();
 		$this->_text_settings();
 	
@@ -437,12 +446,12 @@ function slickmap_css_sitemap_settings_api_init() {
 	
 	
 	//create sections, settings, and fields for each level
-	global $slickmap_css_sitemap_default_levels;
-	foreach( $slickmap_css_sitemap_default_levels as $level => $title ) {
+	global $slickmap_css_sitemap_level_names;
+	foreach( $slickmap_css_sitemap_level_names as $level => $title ) {
 	
 		New slickmap_level( $level );
 	
-	}	//end foreach( $slickmap_css_sitemap_default_levels as $level )
+	}	//end foreach( $slickmap_css_sitemap_level_names as $level )
 
 }	//end slickmap_css_sitemap_settings_api_init()
 
