@@ -251,6 +251,7 @@ function slickmap_css_sitemap_menu() {
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'SlickMap CSS General Settings', 'General', 'manage-options', 'slickmap_css_sitemap_menu_general', create_function( null, 'slickmap_css_sitemap_menu_content( "general" );' ) ); 
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'SlickMap CSS Colors', 'Colors', 'manage-options', 'slickmap_css_sitemap_menu_colors', create_function( null, 'slickmap_css_sitemap_menu_content( "colors" );' ) ); 
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'SlickMap CSS Text Options', 'Text', 'manage-options', 'slickmap_css_sitemap_menu_text', create_function( null, 'slickmap_css_sitemap_menu_content( "text" );' ) );
+	add_submenu_page( 'slickmap_css_sitemap_menu', 'Advanced CSS Settings', 'Advanced', 'manage-options', 'slickmap_css_sitemap_menu_advanced', create_function( null, 'slickmap_css_sitemap_menu_content( "advanced" );' ) );
 	add_submenu_page( 'slickmap_css_sitemap_menu', 'Slickmap Settings Preview', 'Preview', 'manage-options', 'slickmap_css_sitemap_menu_preview', create_function( null, 'slickmap_css_sitemap_menu_content( "preview" );' ) );
 
 }	//end slickmap_css_sitemap_menu()
@@ -311,7 +312,7 @@ function slickmap_css_sitemap_menu_preview_callback() {
 	slickmap_css_sitemap_include_frontend_css_admin();
 	$styles = slickmap_css_sitemap_get_saved_styles();
 	$content = '
-	<ul id="primaryNav" class="col3" style="background: #fff; padding: 1em;">
+	<ul id="primaryNav" class="col3" style="background: #fff; padding: 1em; max-width: 90%">
 		<li id="home">
 			<a href="#home">Home</a>
 		</li>
@@ -342,7 +343,7 @@ function slickmap_css_sitemap_menu_preview_callback() {
 	</ul>
 	';
 	$sitemap = $styles;
-	$sitemap .= '<div class="slickmap sitemap">';
+	$sitemap .= '<div class="slickmap sitemap" style="min-height: 400px;">';
 	//wrapped ul content here
 	$sitemap .= "\n		" . $content . "\n";
 	$sitemap .= '</div>';
@@ -360,6 +361,22 @@ function slickmap_css_sitemap_menu_preview_callback() {
 function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
 
 	slickmap_css_sitemap_save_style_transient();
+	$reset_all = false;
+	if( isset( $_GET[ 'reset_all' ] ) ) {
+	
+		$reset_all = $_GET[ 'reset_all' ];
+	
+	} // end if( isset( $_GET[ 'reset_all' ] ) )
+	if( $reset_all == true ) {
+	
+		echo '
+		<div class="error">
+			<p>Slickmap CSS Settings have been reset to default values.</p>
+		</div>
+		';
+		slickmap_css_sitemap_reset_all();
+	
+	}	//end if( $reset_all === true )
 ?>
     <div class="wrap">
      
@@ -369,14 +386,17 @@ function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
         <?php
         	$active_tab = 'general';
             if( isset( $_GET[ 'tab' ] ) ) {
+            
                 $active_tab = $_GET[ 'tab' ];
-            } // end if
+            
+            } // end if( isset( $_GET[ 'tab' ] ) )
         ?>
          
         <h2 class="nav-tab-wrapper">
         	<a href="?page=slickmap_css_sitemap_menu&tab=general" class="nav-tab <?php echo $active_tab == 'general' ? 'nav-tab-active' : ''; ?>">General</a>
             <a href="?page=slickmap_css_sitemap_menu&tab=colors" class="nav-tab <?php echo $active_tab == 'colors' ? 'nav-tab-active' : ''; ?>">Colors</a>
             <a href="?page=slickmap_css_sitemap_menu&tab=text" class="nav-tab <?php echo $active_tab == 'text' ? 'nav-tab-active' : ''; ?>">Text Options</a>
+             <a href="?page=slickmap_css_sitemap_menu&tab=advanced" class="nav-tab <?php echo $active_tab == 'advanced' ? 'nav-tab-active' : ''; ?>">Advanced</a>
             <a href="?page=slickmap_css_sitemap_menu&tab=preview" class="nav-tab <?php echo $active_tab == 'preview' ? 'nav-tab-active' : ''; ?>">Preview</a>
         </h2>
          
@@ -398,6 +418,47 @@ function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
 				submit_button();
             
             }
+            elseif( $active_tab == 'advanced' ) {
+            
+            	if( !( wp_script_is( 'ace-editor', 'enqueued' ) ) ) {
+            	
+            		if( ( wp_script_is( 'ace-editor', 'registered' ) ) ) {
+            		
+            			wp_enqueue_script( 'ace-editor' );
+            		
+            		}
+            		else {
+            		
+            			wp_enqueue_script( 'ace-editor', SlickMap_PLUGIN_URL . '/lib/ace/ace.js', array( 'jquery' ), null, true );
+            		
+            		}	//end if( ( wp_script_is( 'ace-editor', 'registered' ) ) )
+            	
+            	}	//end if( !( wp_script_is( 'ace-editor', 'enqueued' ) ) )
+            	?>
+				<style type="text/css" media="screen">
+					#slickmap_css_sitemap_ace_editor {
+						margin: 0;
+						position: absolute;
+						top: 2em;
+						bottom: 6em;
+						left: 0;
+						right: 0;
+					}
+					.wrap form {
+						position: relative;
+						min-height: 320px;
+						overflow: hidden;
+					}
+					p.submit {
+						position: absolute;
+						bottom: 0;
+					}
+				</style>
+				<pre id="slickmap_css_sitemap_ace_editor">/*** enter any additional css rules here ***/</pre>
+				<?php
+            	submit_button();
+            
+            }
             elseif( $active_tab == 'preview' ) {
             
              	slickmap_css_sitemap_menu_preview_callback();
@@ -414,6 +475,16 @@ function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
         	?>
              
         </form>
+        <hr/>
+        <div style="background: #fcc; border: 2px solid #d00; padding: 1em 2em; margin-top: 2em;">
+        	<h3>Reset All Settings to Default</h3>
+        	<p>
+        		<a id="slickmap_css_sitemap_resetAll" class="button" href="#!" style="background: #f55; color:#fff; font-weight: bold;">Reset</a>
+        	</p>
+        	<p>
+        		<strong>WARNING: This cannot be undone!</strong><br/>This resets all of your custom settings to the default values.
+        	</p>
+        </div>
     </div><!-- /.wrap -->
 <?php
 
@@ -572,13 +643,42 @@ function slickmap_css_sitemap_general_breakpoint_callback() {
 
 
 
+//function to reset all options to default
+function slickmap_css_sitemap_reset_all() {
+
+	global $slickmap_css_sitemap_default_settings;
+	//update options not in global defaults
+	update_option( 'slickmap_css_sitemap_general_gradient', 'show' );
+	update_option( 'slickmap_css_sitemap_general_breakpoint', '768' );
+	//use global defaults to reset the rest of the options
+	//check each setting and set rules if necessary
+	foreach( $slickmap_css_sitemap_default_settings as $level => $selectors ) {
+	
+		foreach( $selectors as $selector => $properties ) {
+		
+			foreach( $properties as $property => $values ) {
+			
+				$default = $values['default'];
+				$option = 'slickmap_css_sitemap_' . $level . '_' . $values['setting'];
+				update_option( $option, $default );
+			
+			}	//end foreach( $properties as $property => $values )
+		
+		}	//end foreach( $selectors as $selector => $properties )
+	
+	}	//end foreach( $slickmap_css_sitemap_default_settings as $level => $details )
+	slickmap_css_sitemap_save_style_transient();
+
+}	//end slickmap_css_sitemap_reset_all()
+
+
 
 //include colorpicker and script to attach to color inputs
-add_action( 'admin_enqueue_scripts', 'include_colorpicker_script_for_slickmap_options' );
-function include_colorpicker_script_for_slickmap_options() {
+add_action( 'admin_enqueue_scripts', 'slickmap_css_sitemap_include_colorpicker_script' );
+function slickmap_css_sitemap_include_colorpicker_script() {
 
 	wp_enqueue_script( 'wp-color-picker' );
 	wp_enqueue_script( 'slickmap_css_sitemap_admin_js', SlickMap_PLUGIN_URL . '/js/slickmap_css_sitemap_adminfields.js', array( 'jquery', 'wp-color-picker' ), SlickMap_VERSION, true );
 	wp_enqueue_style( 'wp-color-picker' );
 
-}	//end function include_colorpicker_script_for_slickmap_options()
+}	//end function slickmap_css_sitemap_include_colorpicker_script()
