@@ -420,6 +420,9 @@ function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
             }
             elseif( $active_tab == 'advanced' ) {
             
+            	settings_fields( 'slickmap_css_sitemap_menu_advanced' );
+				do_settings_sections( 'slickmap_css_sitemap_menu_advanced' );
+            
             	if( !( wp_script_is( 'ace-editor', 'enqueued' ) ) ) {
             	
             		if( ( wp_script_is( 'ace-editor', 'registered' ) ) ) {
@@ -439,14 +442,14 @@ function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
 					#slickmap_css_sitemap_ace_editor {
 						margin: 0;
 						position: absolute;
-						top: 2em;
+						top: 7em;
 						bottom: 6em;
 						left: 0;
 						right: 0;
 					}
 					.wrap form {
 						position: relative;
-						min-height: 320px;
+						min-height: 400px;
 						overflow: hidden;
 					}
 					p.submit {
@@ -454,7 +457,7 @@ function slickmap_css_sitemap_menu_content( $active_tab = '' ) {
 						bottom: 0;
 					}
 				</style>
-				<pre id="slickmap_css_sitemap_ace_editor">/*** enter any additional css rules here ***/</pre>
+				<pre id="slickmap_css_sitemap_ace_editor"></pre>
 				<?php
             	submit_button();
             
@@ -497,8 +500,9 @@ add_action( 'admin_init', 'slickmap_css_sitemap_settings_api_init' );
 
 function slickmap_css_sitemap_settings_api_init() {
 	
-	//add the general settings section
+	//add the general & advanced settings sections
 	add_settings_section( 'slickmap_css_sitemap_general', 'Global Sitemap Style', 'slickmap_css_sitemap_general_callback', 'slickmap_css_sitemap_menu_general');
+	add_settings_section( 'slickmap_css_sitemap_advanced', 'Advanced Settings', 'slickmap_css_sitemap_advanced_callback', 'slickmap_css_sitemap_menu_advanced');
 	
 	//register general settings for savin'
 	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_gradient' );
@@ -506,6 +510,7 @@ function slickmap_css_sitemap_settings_api_init() {
 	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_radius' );
 	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_padding' );
 	register_setting( 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general_breakpoint' );
+	register_setting( 'slickmap_css_sitemap_menu_advanced', 'slickmap_css_sitemap_advanced_additional_css' );
 
 	//add the fields for each general setting
 	add_settings_field( 'slickmap_css_sitemap_general_gradient', 'Use White Gradient', 'slickmap_css_sitemap_general_gradient_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
@@ -513,6 +518,7 @@ function slickmap_css_sitemap_settings_api_init() {
 	add_settings_field( 'slickmap_css_sitemap_general_radius', 'Border Radius', 'slickmap_css_sitemap_general_radius_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
 	add_settings_field( 'slickmap_css_sitemap_general_padding', 'Padding', 'slickmap_css_sitemap_general_padding_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
 	add_settings_field( 'slickmap_css_sitemap_general_breakpoint', 'Mobile Breakpoint', 'slickmap_css_sitemap_general_breakpoint_callback', 'slickmap_css_sitemap_menu_general', 'slickmap_css_sitemap_general' );
+	add_settings_field( 'slickmap_css_sitemap_advanced_additional_css', 'Additional CSS', 'slickmap_css_sitemap_advanced_additional_css_callback', 'slickmap_css_sitemap_menu_advanced', 'slickmap_css_sitemap_advanced' );
 	
 	
 	
@@ -535,6 +541,14 @@ function slickmap_css_sitemap_general_callback() {
 	echo '<p>Settings here will affect all of the boxes in your sitemap.</p>';
 
 }	//end slickmap_css_sitemap_general_callback()
+
+
+
+function slickmap_css_sitemap_advanced_callback() {
+
+	echo '<p>Here you may add additional CSS rules to further customize your sitemap\'s style.</p>';
+
+}	//end slickmap_css_sitemap_advanced_callback()
 
 
 
@@ -643,6 +657,23 @@ function slickmap_css_sitemap_general_breakpoint_callback() {
 
 
 
+function slickmap_css_sitemap_advanced_additional_css_callback() {
+
+	if( get_option( 'slickmap_css_sitemap_advanced_additional_css' ) ) {
+	
+		echo '<input name="slickmap_css_sitemap_advanced_additional_css" id="slickmap_css_sitemap_advanced_additional_css" type="hidden" value="' . get_option( 'slickmap_css_sitemap_advanced_additional_css' ) . '" />';
+	
+	}
+	else {
+	
+		echo '<input name="slickmap_css_sitemap_advanced_additional_css" id="slickmap_css_sitemap_advanced_additional_css" type="hidden" value="/*** enter any additional css rules here ***/" />';
+	
+	}	//end if( get_option( 'slickmap_css_sitemap_general_font_family' ) )
+
+}	//end slickmap_css_sitemap_advanced_additional_css_callback()
+
+
+
 //function to reset all options to default
 function slickmap_css_sitemap_reset_all() {
 
@@ -670,6 +701,44 @@ function slickmap_css_sitemap_reset_all() {
 	slickmap_css_sitemap_save_style_transient();
 
 }	//end slickmap_css_sitemap_reset_all()
+
+
+
+//filter css before save
+add_action( 'init', 'slickmap_css_sitemap_add_css_filter' );
+function update_option_slickmap_css_sitemap_advanced_additional_css( $new_value, $old_value ) {
+	
+	
+	$new_value = slickmap_css_sitemap_clean_css( $new_value );
+	return $new_value;
+	
+}	//end update_option_slickmap_css_sitemap_advanced_additional_css( $new_value, $old_value )
+
+
+
+function slickmap_css_sitemap_add_css_filter() {
+
+	add_filter( 'pre_update_option_slickmap_css_sitemap_advanced_additional_css', 'update_option_slickmap_css_sitemap_advanced_additional_css', 10, 2 );
+
+}	//end slickmap_css_sitemap_add_css_filter()
+
+
+
+//function to sanitize css
+function slickmap_css_sitemap_clean_css( $css ) {
+
+	require_once( SlickMap_PLUGIN_DIR .'/lib/CSSTidy/class.csstidy.php' );
+	$csstidy = new csstidy();
+	$csstidy->set_cfg( 'discard_invalid_properties', TRUE );
+	$csstidy->set_cfg( 'preserve_css', TRUE ); 
+	$css = wp_kses_split( $css, array(), array() );
+	$csstidy->parse( $css );
+	$cssclean = $csstidy->print->formatted();
+	$css = print_r( $csstidy->print->output_css_plain, true );
+	$css = str_replace( array( "\n", "\r", "\t" ), '', $css );
+	return $css;
+
+}	//slickmap_css_sitemap_clean_css( $css )
 
 
 

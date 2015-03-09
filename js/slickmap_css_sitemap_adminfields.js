@@ -32,6 +32,7 @@ jQuery(document).ready(function ($) {
 	 	});	//end $('#slickmap_css_sitemap_resetAll').click(function()
 	 
 	 }	//end if ($('#slickmap_css_sitemap_resetAll').length)
+	 
 	 if ($('#slickmap_css_sitemap_ace_editor').length) {
 	 
 		var editor = ace.edit("slickmap_css_sitemap_ace_editor");
@@ -39,5 +40,16 @@ jQuery(document).ready(function ($) {
 		editor.getSession().setMode("ace/mode/css");
 	
 	}	//end if ($('#slickmap_css_sitemap_ace_editor').length)
+	
+	if ($('#slickmap_css_sitemap_advanced_additional_css').length) {
+	
+		editor.setValue($('#slickmap_css_sitemap_advanced_additional_css').val());
+		editor.getSession().on('change', function(e) {
+		
+			$('#slickmap_css_sitemap_advanced_additional_css').val(editor.getValue());
+		
+		});	//end editor.getSession().on('change', function(e)
+	
+	}	//end ($'#slickmap_css_sitemap_advanced_additional_css').length())
 
 });	//end jQuery(document).ready(function ($)
