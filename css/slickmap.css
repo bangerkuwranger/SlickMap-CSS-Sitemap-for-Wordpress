@@ -115,7 +115,6 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 ------------------------------------------------------------ */
 
 .slickmap {
-	background: white;
 	color: black;
 	font-family: Gotham, Helvetica, Arial, sans-serif;
 	font-size: 12px;
@@ -162,7 +161,7 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 #primaryNav #home {
 	display: block;
 	float: none;
-	background: #ffffff url('images/L1-left.png') center bottom no-repeat;
+	background: url('images/L1-left.png') center bottom no-repeat;
 	position: relative;
 	z-index: 2;
 	padding: 0 0 30px 0;
@@ -173,6 +172,9 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 	background: url('images/L1-center.png') center top no-repeat;
 	padding: 30px 0;
 	margin-top: -30px;
+}
+#primaryNav>li:nth-child(2) {
+	background: transparent;
 }
 #primaryNav li a {
 	margin: 0 20px 0 0;
@@ -237,7 +239,9 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 	padding-top: 30px;
 }
 #primaryNav li li:last-child {
-	background: url('images/vertical-line.png') center bottom repeat-y;
+	background: url('images/vertical-line.png');
+	background-repeat: no-repeat;
+	background-position: 50% 0px;
 }
 #primaryNav li li a:link:after,
 #primaryNav li li a:visited:after {
@@ -247,11 +251,11 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 /* --------	Third Level --------- */
 
 #primaryNav li li ul {
-	margin: 10px 0 0 0;
+	margin: 0;
 	width: 100%;
 	float: right;
 	padding: 9px 0 10px 0;
-	background: #ffffff url('images/L3-ul-top.png') center top no-repeat;
+	background: url('images/L3-ul-top.png') center top no-repeat;
 }
 #primaryNav li li li {
 	background: url('images/L3-center.png') left center no-repeat;
@@ -262,7 +266,7 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 	border-color: #e3ca4b;
 	font-size: 12px;
 	padding: 5px 0;
-	width: 80%;
+	width: 90%;
 	float: right;
 	-o-border-radius: inherit;
 	-moz-border-radius: inherit;
@@ -276,6 +280,7 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 #primaryNav li li li:first-child {
 	padding: 15px 0 5px 0;
 	background: url('images/L3-li-top.png') left center no-repeat;
+	margin-top: 10px !important;
 }
 #primaryNav li li li:last-child {
 	background: url('images/L3-bottom.png') left center no-repeat;
@@ -343,4 +348,15 @@ NOTE: This CSS file was originally created by Matt Everson (astuteo.com) as part
 #primaryNav.mobile>li,
 #primaryNav.mobile>li:last-child {
 	background-image: none !important;
+}
+
+@media (max-width: 960px) {
+
+	#primaryNav li li li a {
+		width: 75% !important;
+	}
+	#primaryNav.mobile li li li a {
+		width: 95% !important;
+	}
+
 }

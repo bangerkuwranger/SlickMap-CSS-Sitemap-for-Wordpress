@@ -425,6 +425,9 @@ function slickmap_css_sitemap_return_user_styles() {
 	
 	}	//end foreach( $slickmap_css_sitemap_default_settings as $level => $details )
 	
+	//add advanced additional style rules
+	$styles .= get_option( 'slickmap_css_sitemap_advanced_additional_css' );
+	
 	//finish building concatenated styles
 	$styles .= "</style>\n";
 	

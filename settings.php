@@ -312,7 +312,7 @@ function slickmap_css_sitemap_menu_preview_callback() {
 	slickmap_css_sitemap_include_frontend_css_admin();
 	$styles = slickmap_css_sitemap_get_saved_styles();
 	$content = '
-	<ul id="primaryNav" class="col3" style="background: #fff; padding: 1em; max-width: 90%">
+	<ul id="primaryNav" class="col3">
 		<li id="home">
 			<a href="#home">Home</a>
 		</li>
@@ -681,6 +681,7 @@ function slickmap_css_sitemap_reset_all() {
 	//update options not in global defaults
 	update_option( 'slickmap_css_sitemap_general_gradient', 'show' );
 	update_option( 'slickmap_css_sitemap_general_breakpoint', '768' );
+	update_option( 'slickmap_css_sitemap_advanced_additional_css', '/*** enter any additional css rules here ***/' );
 	//use global defaults to reset the rest of the options
 	//check each setting and set rules if necessary
 	foreach( $slickmap_css_sitemap_default_settings as $level => $selectors ) {
