@@ -1,6 +1,13 @@
 jQuery(document).ready(function ($) {
 
-	$(".slickmap>ul").attr("id", "primaryNav");
+	if ($(".slickmap>ul").length > 1)
+	{
+	    $(".slickmap>ul:nth-child(2)").attr('id', 'utilityNav');
+	    $(".slickmap>ul:nth-child(3)").attr('id', 'primaryNav');
+	} else { 
+	    $(".slickmap>ul").attr("id", "primaryNav");
+	}
+	
 	$("#primaryNav>li:first-child").attr("id", "home");
 	var breakpoint = 768;
 	if (slickmapSettings) {
